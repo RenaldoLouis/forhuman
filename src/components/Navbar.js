@@ -14,6 +14,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 function Navbar() {
     const [state, setState] = React.useState({
@@ -61,9 +62,12 @@ function Navbar() {
             </List>
         </Box>
     );
+
+
+
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar color="primary" position="static">
                 <Toolbar>
                     <IconButton
                         size="large"
@@ -83,7 +87,7 @@ function Navbar() {
                         {list("bottom")}
                     </Drawer>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        News
+                        ForHuman
                     </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
