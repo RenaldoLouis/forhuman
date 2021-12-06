@@ -16,6 +16,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 function Content() {
     const Item = styled(Paper)(({ theme }) => ({
@@ -25,34 +27,33 @@ function Content() {
         color: theme.palette.text.secondary,
     }));
 
-    const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const cards = [1, 2, 3];
+    const theme = createTheme();
+
 
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} style={{ width: "100%" }}>
                 <div className="content-card1">
-                    <img className="content-card1-image" src="card1.jpg" alt="Italian Trulli" />
+                    <img className="content-card1-image" src="card1-alt.jpg" alt="Italian Trulli" />
                 </div>
             </Grid>
             <Grid item xs={12}>
                 <div className="content-card2">
-                    <img className="content-card2-image" src="card2.jpg" alt="Italian Trulli" />
+                    <img className="content-card2-image" src="card2-alt.jpeg" alt="Italian Trulli" />
                 </div>
             </Grid>
-            <Container sx={{ py: 8 }} maxWidth="md">
+            <Container sx={{ py: 4, ml: 2 }} maxWidth="false">
                 {/* End hero unit */}
                 <Grid container spacing={4}>
                     {cards.map((card) => (
-                        <Grid item key={card} xs={12} sm={6} md={4}>
+                        <Grid item key={card} xs={12} sm={4} md={4}>
                             <Card
                                 sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                             >
                                 <CardMedia
                                     component="img"
-                                    sx={{
-                                        // 16:9
-                                        pt: '56.25%',
-                                    }}
+                                    // sx={{pt: '50%', }}
                                     image="https://source.unsplash.com/random"
                                     alt="random"
                                 />
@@ -74,7 +75,7 @@ function Content() {
                     ))}
                 </Grid>
             </Container>
-        </Grid>
+        </Grid >
     );
 }
 
