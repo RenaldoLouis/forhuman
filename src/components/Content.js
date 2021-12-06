@@ -90,11 +90,11 @@ function Content() {
                 </div>
             </Grid>
             <Container sx={{ py: 4 }}>
-                <Grid style={{ height: "100%" }}>
+                <Grid>
                     <Carousel
                         swipeable={true}
                         draggable={true}
-                        showDots={true}
+                        showDots={false}
                         responsive={responsive}
                         ssr={true} // means to render carousel on server-side.
                         infinite={false}
@@ -103,17 +103,18 @@ function Content() {
                         customTransition="all .5"
                         transitionDuration={500}
                         containerClass="carousel-container carousel-heigth"
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
                         dotListClass="custom-dot-list-style"
                         itemClass="carousel-item-padding-40-px"
+                        removeArrowOnDeviceType={["tablet", "mobile"]}
+
                     >
                         {catalogData.map((catalogData) => (
                             <Card
-                                sx={{ display: 'flex', flexDirection: 'column', m: "1%" }}
+                                sx={{ display: 'flex', flexDirection: 'column', m: "1%", height: "100%" }}
                             >
                                 <CardMedia
                                     component="img"
-                                    // sx={{ p: '10%', }}
+                                    sx={{ height: '100%', }}
                                     image={catalogData.image}
                                     alt="random"
                                 />
