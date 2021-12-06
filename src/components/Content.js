@@ -16,6 +16,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
@@ -28,9 +30,25 @@ function Content() {
     }));
 
     const cards = [1, 2, 3];
-    const theme = createTheme();
-
-
+    const responsive = {
+        superLargeDesktop: {
+            // the naming can be any, depends on you.
+            breakpoint: { max: 4000, min: 3000 },
+            items: 5
+        },
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 3
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1
+        }
+    };
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} style={{ width: "100%" }}>
@@ -43,7 +61,32 @@ function Content() {
                     <img className="content-card2-image" src="card2-alt.jpeg" alt="Italian Trulli" />
                 </div>
             </Grid>
-            <Container sx={{ py: 4, ml: 2 }} maxWidth="false">
+            <Container sx={{ py: 4 }}>
+                <Grid style={{ height: "100%" }}>
+                    <Carousel
+                        swipeable={false}
+                        draggable={false}
+                        showDots={true}
+                        responsive={responsive}
+                        ssr={true} // means to render carousel on server-side.
+                        infinite={true}
+                        autoPlaySpeed={1000}
+                        keyBoardControl={true}
+                        customTransition="all .5"
+                        transitionDuration={500}
+                        containerClass="carousel-container carousel-heigth"
+                        removeArrowOnDeviceType={["tablet", "mobile"]}
+                        dotListClass="custom-dot-list-style"
+                        itemClass="carousel-item-padding-40-px"
+                    >
+                        <div>Item 1</div>
+                        <div>Item 2</div>
+                        <div>Item 3</div>
+                        <div>Item 4</div>
+                    </Carousel>
+                </Grid>
+            </Container>
+            <Container sx={{ py: 2, ml: 2 }} maxWidth="false">
                 {/* End hero unit */}
                 <Grid container spacing={4}>
                     {cards.map((card) => (
