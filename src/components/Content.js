@@ -100,8 +100,8 @@ function Content() {
                         infinite={false}
                         autoPlaySpeed={1000}
                         keyBoardControl={true}
-                        customTransition="all .5"
-                        transitionDuration={500}
+                        customTransition="transform 500ms ease-in-out"
+                        transitionDuration={1000}
                         containerClass="carousel-container carousel-heigth"
                         dotListClass="custom-dot-list-style"
                         itemClass="carousel-item-padding-40-px"
