@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -22,6 +22,28 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 function Content() {
+    const [width, setWidth] = useState(window.innerWidth);
+    const [height, setHeight] = useState(window.innerHeight);
+
+    let isMobile = width <= 570;
+    let isTablet = width <= 1024;
+
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth);
+    }
+    function handleWindowHeightSizeChange() {
+        setHeight(window.innerHeight);
+    }
+
+    useEffect(() => {
+        window.addEventListener("resize", handleWindowSizeChange);
+        window.addEventListener("resize", handleWindowHeightSizeChange);
+        return () => {
+            window.removeEventListener("resize", handleWindowSizeChange);
+            window.removeEventListener("resize", handleWindowHeightSizeChange);
+        };
+    }, [isMobile, height]);
+
     const Item = styled(Paper)(({ theme }) => ({
         ...theme.typography.body2,
         padding: theme.spacing(1),
@@ -94,10 +116,10 @@ function Content() {
                     <Carousel
                         swipeable={true}
                         draggable={true}
-                        showDots={false}
+                        showDots={isTablet ? true : false}
                         responsive={responsive}
                         ssr={true} // means to render carousel on server-side.
-                        infinite={false}
+                        infinite={true}
                         autoPlaySpeed={1000}
                         keyBoardControl={true}
                         customTransition="transform 500ms ease-in-out"
@@ -106,11 +128,10 @@ function Content() {
                         dotListClass="custom-dot-list-style"
                         itemClass="carousel-item-padding-40-px"
                         removeArrowOnDeviceType={["tablet", "mobile"]}
-
                     >
                         {catalogData.map((catalogData) => (
                             <Card
-                                sx={{ display: 'flex', flexDirection: 'column', m: "1%", height: "100%" }}
+                                sx={{ display: 'flex', flexDirection: 'column', m: "1%", height: "100%", marginLeft: "1rem" }}
                             >
                                 <CardMedia
                                     component="img"
