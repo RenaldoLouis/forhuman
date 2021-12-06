@@ -16,8 +16,17 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MailIcon from '@mui/icons-material/Mail';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    withRouter,
+    useLocation,
+    useHistory
+} from "react-router-dom";
 
 function Navbar() {
+    const history = useHistory();
     const [state, setState] = React.useState({
         top: false,
         left: false,
@@ -31,6 +40,10 @@ function Navbar() {
         }
 
         setState({ ...state, [anchor]: open });
+    };
+
+    const navToShop = () => {
+        history.push("shop");
     };
 
     const list = (anchor) => (
@@ -49,7 +62,7 @@ function Navbar() {
                         <ListItemText primary={text} />
                     </ListItem>
                 ))} */}
-                <ListItem button key="button1">
+                <ListItem onClick={navToShop} button key="button1">
                     <ListItemIcon>
                         <ShoppingCartIcon />
                     </ListItemIcon>
@@ -67,7 +80,7 @@ function Navbar() {
                     </ListItem>
                 ))}
             </List>
-        </Box>
+        </Box >
     );
 
 
