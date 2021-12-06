@@ -19,9 +19,18 @@ import Link from '@mui/material/Link';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    withRouter,
+    useLocation,
+    useHistory
+} from "react-router-dom";
 
 function Shop() {
+    const history = useHistory();
+
     const Item = styled(Paper)(({ theme }) => ({
         ...theme.typography.body2,
         padding: theme.spacing(1),
@@ -58,29 +67,25 @@ function Shop() {
     },
     ]
 
-    const responsive = {
-        superLargeDesktop: {
-            // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 3000 },
-            items: 5
-        },
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 3
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 2
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1
-        }
+    const navToHome = () => {
+        history.push("/");
     };
+
     return (
         <Grid container spacing={2}>
             <Container sx={{ py: 2, ml: 2 }} maxWidth="false">
                 {/* End hero unit */}
+                <Grid style={{ textAlign: "start" }} sx={{ py: 1 }}>
+                    <Link
+                        component="button"
+                        variant="body2"
+                        onClick={() => {
+                            navToHome()
+                        }}
+                    >
+                        Back To Home
+                    </Link>
+                </Grid>
                 <Grid container spacing={4}>
                     {cards.map((card) => (
                         <Grid item key={card} xs={12} sm={4} md={4}>
