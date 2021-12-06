@@ -30,6 +30,34 @@ function Content() {
     }));
 
     const cards = [1, 2, 3];
+
+    const catalogData = [{
+        name: "SUPERTURF X ATMOS",
+        description: "Bright,bold and glazed",
+        image: "product1.jpeg"
+    },
+    {
+        name: "Ultraboost DNA City Pack",
+        description: "Own your unique style in contemporary",
+        image: "product2.jpeg"
+    },
+    {
+        name: "SUPERNOVA",
+        description: "Why lives just one liffe when you can live them all?",
+        image: "product3.jpeg"
+    },
+    {
+        name: "ADIDAS X MARIMEKKO",
+        description: "Embrace your own evolution",
+        image: "product4.jpeg"
+    },
+    {
+        name: "ADIDAS X PARLEY",
+        description: "A better choice for our planet",
+        image: "product5.jpeg"
+    },
+    ]
+
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -64,12 +92,12 @@ function Content() {
             <Container sx={{ py: 4 }}>
                 <Grid style={{ height: "100%" }}>
                     <Carousel
-                        swipeable={false}
-                        draggable={false}
+                        swipeable={true}
+                        draggable={true}
                         showDots={true}
                         responsive={responsive}
                         ssr={true} // means to render carousel on server-side.
-                        infinite={true}
+                        infinite={false}
                         autoPlaySpeed={1000}
                         keyBoardControl={true}
                         customTransition="all .5"
@@ -79,53 +107,26 @@ function Content() {
                         dotListClass="custom-dot-list-style"
                         itemClass="carousel-item-padding-40-px"
                     >
-                        {/* <div><Card
-                            sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                        >
-                            <CardMedia
-                                component="img"
-                                // sx={{pt: '50%', }}
-                                image="https://source.unsplash.com/random"
-                                alt="random"
-                            />
-                            <CardContent sx={{ flexGrow: 1 }}>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    Heading
-                                </Typography>
-                                <Typography>
-                                    This is a media card. You can use this section to describe the
-                                    content.
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Button size="small">View</Button>
-                                <Button size="small">Edit</Button>
-                            </CardActions>
-                        </Card></div>
-                        <div>Item 2</div>
-                        <div>Item 3</div>
-                        <div>Item 4</div> */}
-                        {cards.map((card) => (
+                        {catalogData.map((catalogData) => (
                             <Card
-                                sx={{ display: 'flex', flexDirection: 'column', m: "10%" }}
+                                sx={{ display: 'flex', flexDirection: 'column', m: "1%" }}
                             >
                                 <CardMedia
                                     component="img"
                                     // sx={{ p: '10%', }}
-                                    image="https://source.unsplash.com/random"
+                                    image={catalogData.image}
                                     alt="random"
                                 />
                                 <CardContent sx={{ flexGrow: 1 }}>
                                     <Typography gutterBottom variant="h5" component="h2">
-                                        Product Name
+                                        {catalogData.name}
                                     </Typography>
                                     <Typography>
-                                        Product description
+                                        {catalogData.description}
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <Button size="small">View</Button>
-                                    <Button size="small">Edit</Button>
+                                    <Button sx={{ color: "white" }} size="small">Shop Now</Button>
                                 </CardActions>
                             </Card>
                         ))}
