@@ -13,6 +13,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MailIcon from '@mui/icons-material/Mail';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -40,14 +41,20 @@ function Navbar() {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
                         <ListItemIcon>
                             {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                         </ListItemIcon>
                         <ListItemText primary={text} />
                     </ListItem>
-                ))}
+                ))} */}
+                <ListItem button key="button1">
+                    <ListItemIcon>
+                        <ShoppingCartIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Buy Now" />
+                </ListItem>
             </List>
             <Divider />
             <List>
