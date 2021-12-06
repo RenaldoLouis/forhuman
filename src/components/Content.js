@@ -79,10 +79,56 @@ function Content() {
                         dotListClass="custom-dot-list-style"
                         itemClass="carousel-item-padding-40-px"
                     >
-                        <div>Item 1</div>
+                        {/* <div><Card
+                            sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                        >
+                            <CardMedia
+                                component="img"
+                                // sx={{pt: '50%', }}
+                                image="https://source.unsplash.com/random"
+                                alt="random"
+                            />
+                            <CardContent sx={{ flexGrow: 1 }}>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    Heading
+                                </Typography>
+                                <Typography>
+                                    This is a media card. You can use this section to describe the
+                                    content.
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button size="small">View</Button>
+                                <Button size="small">Edit</Button>
+                            </CardActions>
+                        </Card></div>
                         <div>Item 2</div>
                         <div>Item 3</div>
-                        <div>Item 4</div>
+                        <div>Item 4</div> */}
+                        {cards.map((card) => (
+                            <Card
+                                sx={{ display: 'flex', flexDirection: 'column', m: "10%" }}
+                            >
+                                <CardMedia
+                                    component="img"
+                                    // sx={{ p: '10%', }}
+                                    image="https://source.unsplash.com/random"
+                                    alt="random"
+                                />
+                                <CardContent sx={{ flexGrow: 1 }}>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        Product Name
+                                    </Typography>
+                                    <Typography>
+                                        Product description
+                                    </Typography>
+                                </CardContent>
+                                <CardActions>
+                                    <Button size="small">View</Button>
+                                    <Button size="small">Edit</Button>
+                                </CardActions>
+                            </Card>
+                        ))}
                     </Carousel>
                 </Grid>
             </Container>
