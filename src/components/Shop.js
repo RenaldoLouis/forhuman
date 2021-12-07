@@ -100,7 +100,7 @@ function Shop() {
         setTimeout(() => {
             var containerHeight = document.getElementById('mainBodyShop').offsetHeight
             setShopPageHeight(containerHeight)
-        }, 1000);
+        }, 500);
     }, [])
 
     return (
