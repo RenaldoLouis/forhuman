@@ -27,10 +27,13 @@ import {
     useLocation,
     useHistory
 } from "react-router-dom";
+// import StickyBox from "react-sticky-box";
+import StickyBox from "react-sticky-box/dist/esnext";
 
 function Shop() {
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
+    const [shopPageHeight, setShopPageHeight] = useState()
 
     let isMobile = width <= 570;
     let isMDthreshold = width <= 900;
@@ -93,13 +96,22 @@ function Shop() {
         history.push("/");
     };
 
+    useEffect(() => {
+        setTimeout(() => {
+            var containerHeight = document.getElementById('mainBodyShop').offsetHeight
+            setShopPageHeight(containerHeight)
+        }, 1000);
+    }, [])
+
     return (
-        <Grid container spacing={2} >
+        <Grid id="mainBodyShop" container spacing={2} >
             <Grid xs={0} md={2} style={{ display: isMDthreshold ? "none" : "" }}>
                 <Container sx={{ py: 2, ml: 2 }} maxWidth="false">
                     {/* End hero unit */}
-                    <Grid style={{ textAlign: "start" }} sx={{ py: 1 }}>
-                        Filter
+                    <Grid style={{ textAlign: "start", height: shopPageHeight }} sx={{ py: 1 }}>
+                        <StickyBox offsetTop={20} offsetBottom={20}>
+                            <div>Sidebar</div>
+                        </StickyBox>
                     </Grid>
                 </Container>
             </Grid>
