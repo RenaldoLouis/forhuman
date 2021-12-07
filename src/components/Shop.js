@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -29,6 +29,28 @@ import {
 } from "react-router-dom";
 
 function Shop() {
+    const [width, setWidth] = useState(window.innerWidth);
+    const [height, setHeight] = useState(window.innerHeight);
+
+    let isMobile = width <= 570;
+    let isMDthreshold = width <= 900;
+
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth);
+    }
+    function handleWindowHeightSizeChange() {
+        setHeight(window.innerHeight);
+    }
+
+    useEffect(() => {
+        window.addEventListener("resize", handleWindowSizeChange);
+        window.addEventListener("resize", handleWindowHeightSizeChange);
+        return () => {
+            window.removeEventListener("resize", handleWindowSizeChange);
+            window.removeEventListener("resize", handleWindowHeightSizeChange);
+        };
+    }, [isMobile, height]);
+
     const history = useHistory();
 
     const Item = styled(Paper)(({ theme }) => ({
@@ -72,50 +94,60 @@ function Shop() {
     };
 
     return (
-        <Grid container spacing={2}>
-            <Container sx={{ py: 2, ml: 2 }} maxWidth="false">
-                {/* End hero unit */}
-                <Grid style={{ textAlign: "start" }} sx={{ py: 1 }}>
-                    <Link
-                        component="button"
-                        variant="body2"
-                        onClick={() => {
-                            navToHome()
-                        }}
-                    >
-                        Back To Home
-                    </Link>
-                </Grid>
-                <Grid container spacing={4}>
-                    {cards.map((card) => (
-                        <Grid item key={card} xs={12} sm={4} md={4}>
-                            <Card
-                                sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                            >
-                                <CardMedia
-                                    component="img"
-                                    // sx={{pt: '50%', }}
-                                    image="https://source.unsplash.com/random"
-                                    alt="random"
-                                />
-                                <CardContent sx={{ flexGrow: 1 }}>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        Heading
-                                    </Typography>
-                                    <Typography>
-                                        This is a media card. You can use this section to describe the
-                                        content.
-                                    </Typography>
-                                </CardContent>
-                                <CardActions>
-                                    <Button size="small">View</Button>
-                                    <Button size="small">Edit</Button>
-                                </CardActions>
-                            </Card>
-                        </Grid>
-                    ))}
-                </Grid>
-            </Container>
+        <Grid container spacing={2} >
+            <Grid xs={0} md={2} style={{ display: isMDthreshold ? "none" : "" }}>
+                <Container sx={{ py: 2, ml: 2 }} maxWidth="false">
+                    {/* End hero unit */}
+                    <Grid style={{ textAlign: "start" }} sx={{ py: 1 }}>
+                        Filter
+                    </Grid>
+                </Container>
+            </Grid>
+            <Grid xs={12} md={10}>
+                <Container sx={{ py: 2, ml: 1 }} maxWidth="false">
+                    <Grid className="spaceBetweenContent" style={{ textAlign: "start" }} sx={{ py: 1 }}>
+                        <Link
+                            component="button"
+                            variant="body2"
+                            onClick={() => {
+                                navToHome()
+                            }}
+                        >
+                            Back To Home
+                        </Link>
+                        <Button style={{ display: isMDthreshold ? "" : "none" }} variant="outlined">Filter</Button>
+                    </Grid>
+                    <Grid container spacing={4}>
+                        {cards.map((card) => (
+                            <Grid item key={card} xs={12} sm={4} md={4}>
+                                <Card
+                                    sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                                >
+                                    <CardMedia
+                                        component="img"
+                                        // sx={{pt: '50%', }}
+                                        image="https://source.unsplash.com/random"
+                                        alt="random"
+                                    />
+                                    <CardContent sx={{ flexGrow: 0 }}>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            Heading
+                                        </Typography>
+                                        <Typography>
+                                            This is a media card. You can use this section to describe the
+                                            content.
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button size="small">View</Button>
+                                        <Button size="small">Edit</Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Container>
+            </Grid>
         </Grid >
     );
 }
