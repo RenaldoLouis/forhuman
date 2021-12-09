@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, { memo, useState, useEffect, useContext } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -27,6 +27,7 @@ import {
     useLocation,
     useHistory
 } from "react-router-dom";
+import { DataContext } from "../context/DataContext"
 
 function Content() {
     const [width, setWidth] = useState(window.innerWidth);
@@ -43,6 +44,8 @@ function Content() {
     }
 
     const history = useHistory();
+
+    const { isLoading, setLoading, toastify, toastPopup, setOnHome, isHome } = useContext(DataContext);
 
     useEffect(() => {
         window.addEventListener("resize", handleWindowSizeChange);
@@ -110,6 +113,11 @@ function Content() {
     };
 
     const navToShop = () => {
+        setOnHome(false)
+        document.getElementById("navbar").classList.remove("stickyHeader")
+        document.getElementById("iconNavbar").classList.remove("displayNone")
+        document.getElementById("buttonNavbar").classList.remove("displayNone")
+        document.getElementById("titleNavbar").classList.remove("flexgrow0")
         history.push("shop");
     };
 

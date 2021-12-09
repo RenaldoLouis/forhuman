@@ -100,6 +100,7 @@ function Shop() {
     };
 
     useEffect(() => {
+        console.log("shop", isHome)
         setTimeout(() => {
             var containerHeight = document.getElementById('mainBodyShop').offsetHeight
             setShopPageHeight(containerHeight)
