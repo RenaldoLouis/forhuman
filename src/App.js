@@ -13,6 +13,7 @@ import {
   useHistory
 } from "react-router-dom";
 import Shop from './components/Shop';
+import { DataContextProvider } from './context/DataContext';
 
 function App() {
   const darkTheme = createTheme({
@@ -46,14 +47,13 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <ThemeProvider theme={darkTheme}>
-            <Main></Main>
-          </ThemeProvider>
+          <DataContextProvider>
+            <ThemeProvider theme={darkTheme}>
+              <Main></Main>
+            </ThemeProvider>
+          </DataContextProvider>
         </Switch>
       </Router>
-      <ThemeProvider theme={darkTheme}>
-
-      </ThemeProvider>
     </div>
   );
 }

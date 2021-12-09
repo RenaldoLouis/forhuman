@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -15,6 +15,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MailIcon from '@mui/icons-material/Mail';
+import { DataContext } from "../context/DataContext"
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {
     BrowserRouter as Router,
@@ -34,6 +35,9 @@ function Navbar() {
         right: false,
     });
 
+    const { isLoading, setLoading, toastify, toastPopup, setOnHome, isHome } = useContext(DataContext);
+
+
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
@@ -43,6 +47,11 @@ function Navbar() {
     };
 
     const navToShop = () => {
+        setOnHome(false)
+        document.getElementById("navbar").classList.remove("stickyHeader")
+        document.getElementById("iconNavbar").classList.remove("displayNone")
+        document.getElementById("buttonNavbar").classList.remove("displayNone")
+        document.getElementById("titleNavbar").classList.remove("flexgrow0")
         history.push("shop");
     };
 
@@ -72,7 +81,7 @@ function Navbar() {
             <Divider />
             <List>
                 {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
+                    <ListItem button key={index}>
                         <ListItemIcon>
                             {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                         </ListItemIcon>
@@ -83,13 +92,29 @@ function Navbar() {
         </Box >
     );
 
-
+    window.onscroll = function () {
+        console.log(isHome)
+        if (isHome) {
+            if (window.scrollY > 1) {
+                document.getElementById("navbar").classList.add("stickyHeader")
+                document.getElementById("iconNavbar").classList.add("displayNone")
+                document.getElementById("buttonNavbar").classList.add("displayNone")
+                document.getElementById("titleNavbar").classList.add("flexgrow0")
+            } else {
+                document.getElementById("navbar").classList.remove("stickyHeader")
+                document.getElementById("iconNavbar").classList.remove("displayNone")
+                document.getElementById("buttonNavbar").classList.remove("displayNone")
+                document.getElementById("titleNavbar").classList.remove("flexgrow0")
+            }
+        }
+    };
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box id="navbar" sx={{ flexGrow: 1 }}>
             <AppBar color="primary" position="static">
                 <Toolbar>
                     <IconButton
+                        id="iconNavbar"
                         size="large"
                         edge="start"
                         color="inherit"
@@ -106,10 +131,10 @@ function Navbar() {
                     >
                         {list("bottom")}
                     </Drawer>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    <Typography id="titleNavbar" variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         ForHuman
                     </Typography>
-                    <Button color="inherit">Login</Button>
+                    <Button id="buttonNavbar" color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
         </Box>

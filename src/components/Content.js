@@ -19,7 +19,14 @@ import Link from '@mui/material/Link';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    withRouter,
+    useLocation,
+    useHistory
+} from "react-router-dom";
 
 function Content() {
     const [width, setWidth] = useState(window.innerWidth);
@@ -34,6 +41,8 @@ function Content() {
     function handleWindowHeightSizeChange() {
         setHeight(window.innerHeight);
     }
+
+    const history = useHistory();
 
     useEffect(() => {
         window.addEventListener("resize", handleWindowSizeChange);
@@ -99,6 +108,11 @@ function Content() {
             items: 1
         }
     };
+
+    const navToShop = () => {
+        history.push("shop");
+    };
+
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} style={{ width: "100%" }}>
@@ -148,7 +162,7 @@ function Content() {
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <Button sx={{ color: "white" }} size="small">Shop Now</Button>
+                                    <Button onClick={navToShop} sx={{ color: "white" }} size="small">Shop Now</Button>
                                 </CardActions>
                             </Card>
                         ))}

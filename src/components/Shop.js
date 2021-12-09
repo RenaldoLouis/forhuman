@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, { memo, useState, useEffect, useContext } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -27,10 +27,12 @@ import {
     useLocation,
     useHistory
 } from "react-router-dom";
-// import StickyBox from "react-sticky-box";
+import { DataContext } from "../context/DataContext"
 import StickyBox from "react-sticky-box/dist/esnext";
 
 function Shop() {
+    const { isLoading, setLoading, toastify, toastPopup, setOnHome, isHome } = useContext(DataContext);
+
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
     const [shopPageHeight, setShopPageHeight] = useState()
@@ -93,6 +95,7 @@ function Shop() {
     ]
 
     const navToHome = () => {
+        setOnHome(true);
         history.push("/");
     };
 
