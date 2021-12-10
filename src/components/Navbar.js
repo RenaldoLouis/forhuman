@@ -98,12 +98,12 @@ function Navbar() {
             if (window.scrollY > 1) {
                 document.getElementById("navbar").classList.add("stickyHeader")
                 document.getElementById("iconNavbar").classList.add("displayNone")
-                document.getElementById("buttonNavbar").classList.add("displayNone")
+                document.getElementById("buttonNavbar").classList.add("dissapearText")
                 document.getElementById("titleNavbar").classList.add("flexgrow0")
             } else {
                 document.getElementById("navbar").classList.remove("stickyHeader")
                 document.getElementById("iconNavbar").classList.remove("displayNone")
-                document.getElementById("buttonNavbar").classList.remove("displayNone")
+                document.getElementById("buttonNavbar").classList.remove("dissapearText")
                 document.getElementById("titleNavbar").classList.remove("flexgrow0")
             }
         }
