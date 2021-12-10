@@ -1,4 +1,4 @@
-import React, { memo, useState, useContext } from 'react';
+import React, { memo, useState, useContext, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -93,7 +93,6 @@ function Navbar() {
     );
 
     window.onscroll = function () {
-        console.log(isHome)
         if (isHome) {
             if (window.scrollY > 1) {
                 document.getElementById("navbar").classList.add("stickyHeader")
@@ -108,6 +107,14 @@ function Navbar() {
             }
         }
     };
+
+    useEffect(() => {
+        console.log("jalan")
+        document.getElementById("navbar").classList.remove("stickyHeader")
+        document.getElementById("iconNavbar").classList.remove("displayNone")
+        document.getElementById("buttonNavbar").classList.remove("dissapearText")
+        document.getElementById("titleNavbar").classList.remove("flexgrow0")
+    }, [isHome])
 
     return (
         <Box id="navbar" sx={{ flexGrow: 1 }}>
