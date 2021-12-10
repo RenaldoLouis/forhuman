@@ -31,11 +31,10 @@ import { DataContext } from "../context/DataContext"
 import StickyBox from "react-sticky-box/dist/esnext";
 
 function Shop() {
-    const { isLoading, setLoading, toastify, toastPopup, setOnHome, isHome } = useContext(DataContext);
+    const { setShopPageHeight, shopPageHeight, isLoading, setLoading, toastify, toastPopup, setOnHome, isHome } = useContext(DataContext);
 
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
-    const [shopPageHeight, setShopPageHeight] = useState()
 
     let isMobile = width <= 570;
     let isMDthreshold = width <= 900;
@@ -100,11 +99,10 @@ function Shop() {
     };
 
     useEffect(() => {
-        console.log("shop", isHome)
         setTimeout(() => {
             var containerHeight = document.getElementById('mainBodyShop').offsetHeight
             setShopPageHeight(containerHeight)
-        }, 500);
+        }, 1);
     }, [])
 
     return (

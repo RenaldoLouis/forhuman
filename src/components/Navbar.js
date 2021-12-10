@@ -109,7 +109,6 @@ function Navbar() {
     };
 
     useEffect(() => {
-        console.log("jalan")
         document.getElementById("navbar").classList.remove("stickyHeader")
         document.getElementById("iconNavbar").classList.remove("displayNone")
         document.getElementById("buttonNavbar").classList.remove("dissapearText")
