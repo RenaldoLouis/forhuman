@@ -75,14 +75,15 @@ function Navbar() {
         history.push("shop");
     };
 
-    const list = (anchor) => (
+    const list = (anchor, index) => (
         <Box
+            key={index}
             sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
             role="presentation"
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
-            <List>
+            <List key={index}>
                 {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
                         <ListItemIcon>
@@ -97,7 +98,7 @@ function Navbar() {
                     </ListItemIcon>
                     <ListItemText primary="Buy Now" />
                 </ListItem>
-                <ListItem onClick={navToShop} button key="button1">
+                <ListItem onClick={navToShop} button key="button2">
                     <ListItemIcon>
                         <ShoppingCartIcon />
                     </ListItemIcon>
@@ -105,7 +106,7 @@ function Navbar() {
                 </ListItem>
             </List>
             <Divider />
-            <ListItem onClick={() => (modalOpen ? close() : open())} button key="button1">
+            <ListItem onClick={() => (modalOpen ? close() : open())} button key="button3">
                 <ListItemIcon>
                     <MailIcon />
                 </ListItemIcon>

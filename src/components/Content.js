@@ -180,8 +180,8 @@ function Content() {
             <Container sx={{ py: 2, ml: 2 }} maxWidth="false">
                 {/* End hero unit */}
                 <Grid container spacing={4}>
-                    {cards.map((card) => (
-                        <Grid item key={card} xs={12} sm={4} md={4}>
+                    {cards.map((card, index) => (
+                        <Grid item key={index} xs={12} sm={4} md={4}>
                             <Card
                                 sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                             >
