@@ -58,6 +58,7 @@ const Modal = ({ handleClose, text }) => {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
+                style={{ zIndex: "2", display: "" }}
             >
                 <ModalText text="testing TExt" />
                 <ModalButton onClick="testing Label" label="Close" />

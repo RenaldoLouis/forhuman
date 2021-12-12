@@ -8,6 +8,7 @@ const Backdrop = ({ children, onClick }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            style={{ zIndex: "1" }}
         >
             {children}
         </motion.div>
