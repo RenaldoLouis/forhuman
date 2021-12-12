@@ -1,4 +1,18 @@
 import React, { memo, useState, useContext, useEffect } from 'react';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    withRouter,
+    useLocation,
+    useHistory
+} from "react-router-dom";
+
+import { DataContext } from "../context/DataContext";
+
+
+//import MUI
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,17 +28,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import MailIcon from '@mui/icons-material/Mail';
-import { DataContext } from "../context/DataContext"
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    withRouter,
-    useLocation,
-    useHistory
-} from "react-router-dom";
+
+//CustomComponent
+import Modal from './Modal';
 
 function Navbar() {
     const history = useHistory();
@@ -37,7 +45,6 @@ function Navbar() {
 
     const { isLoading, setLoading, toastify, toastPopup, setOnHome, isHome } = useContext(DataContext);
 
-
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
@@ -46,7 +53,20 @@ function Navbar() {
         setState({ ...state, [anchor]: open });
     };
 
+    const [modalOpen, setModalOpen] = useState(false);
+    const close = () => setModalOpen(false);
+    const open = () => setModalOpen(true);
+
     const navToShop = () => {
+        setOnHome(false)
+        document.getElementById("navbar").classList.remove("stickyHeader")
+        document.getElementById("iconNavbar").classList.remove("displayNone")
+        document.getElementById("buttonNavbar").classList.remove("displayNone")
+        document.getElementById("titleNavbar").classList.remove("flexgrow0")
+        history.push("shop");
+    };
+
+    const openModalContact = () => {
         setOnHome(false)
         document.getElementById("navbar").classList.remove("stickyHeader")
         document.getElementById("iconNavbar").classList.remove("displayNone")
@@ -73,13 +93,25 @@ function Navbar() {
                 ))} */}
                 <ListItem onClick={navToShop} button key="button1">
                     <ListItemIcon>
-                        <ShoppingCartIcon />
+                        <ShoppingBagIcon />
                     </ListItemIcon>
                     <ListItemText primary="Buy Now" />
                 </ListItem>
+                <ListItem onClick={navToShop} button key="button1">
+                    <ListItemIcon>
+                        <ShoppingCartIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Checkout" />
+                </ListItem>
             </List>
             <Divider />
-            <List>
+            <ListItem onClick={() => (modalOpen ? close() : open())} button key="button1">
+                <ListItemIcon>
+                    <MailIcon />
+                </ListItemIcon>
+                <ListItemText primary="Contact Us" />
+            </ListItem>
+            {/* <List>
                 {['All mail', 'Trash', 'Spam'].map((text, index) => (
                     <ListItem button key={index}>
                         <ListItemIcon>
@@ -88,7 +120,7 @@ function Navbar() {
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
-            </List>
+            </List> */}
         </Box >
     );
 
@@ -116,34 +148,37 @@ function Navbar() {
     }, [isHome])
 
     return (
-        <Box id="navbar" sx={{ flexGrow: 1 }}>
-            <AppBar color="primary" position="static">
-                <Toolbar>
-                    <IconButton
-                        id="iconNavbar"
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                        onClick={toggleDrawer("bottom", true)}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Drawer
-                        anchor={"bottom"}
-                        open={state["bottom"]}
-                        onClose={toggleDrawer("bottom", false)}
-                    >
-                        {list("bottom")}
-                    </Drawer>
-                    <Typography id="titleNavbar" variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        ForHuman
-                    </Typography>
-                    <Button id="buttonNavbar" color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
-        </Box>
+        <div>
+            {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
+            <Box id="navbar" sx={{ flexGrow: 1 }}>
+                <AppBar color="primary" position="static">
+                    <Toolbar>
+                        <IconButton
+                            id="iconNavbar"
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                            onClick={toggleDrawer("bottom", true)}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Drawer
+                            anchor={"bottom"}
+                            open={state["bottom"]}
+                            onClose={toggleDrawer("bottom", false)}
+                        >
+                            {list("bottom")}
+                        </Drawer>
+                        <Typography id="titleNavbar" variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                            ForHuman
+                        </Typography>
+                        <Button id="buttonNavbar" color="inherit">Login</Button>
+                    </Toolbar>
+                </AppBar>
+            </Box>
+        </div>
     )
 }
 
