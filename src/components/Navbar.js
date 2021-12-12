@@ -1,5 +1,4 @@
 import React, { memo, useState, useContext, useEffect } from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,6 +10,8 @@ import {
 
 import { DataContext } from "../context/DataContext";
 
+//framer-motion
+import { AnimatePresence } from 'framer-motion';
 
 //import MUI
 import AppBar from '@mui/material/AppBar';
@@ -150,7 +151,13 @@ function Navbar() {
 
     return (
         <div>
-            {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
+            <AnimatePresence
+                initial={false}
+                exitBeforeEnter={true}
+                onExitComplete={() => null}
+            >
+                {modalOpen && <Modal modalOpen={modalOpen} handleClose={close} />}
+            </AnimatePresence>
             <Box id="navbar" sx={{ flexGrow: 1 }}>
                 <AppBar color="primary" position="static">
                     <Toolbar>

@@ -52,6 +52,7 @@ const Modal = ({ handleClose, text }) => {
     return (
         <Backdrop onClick={handleClose}>
             <motion.div
+                drag
                 onClick={(e) => e.stopPropagation()}  // Prevent click from closing modal
                 className="modal orange-gradient"
                 variants={dropIn}
