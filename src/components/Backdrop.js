@@ -1,10 +1,10 @@
 import { motion } from "framer-motion"
 
-const Backdrop = ({ children, onClick }) => {
+const Backdrop = ({ onClick, children }) => {
     return (
         <motion.div
             className="backdrop"
-            onclick={onClick}
+            onClick={onClick}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

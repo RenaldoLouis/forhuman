@@ -61,7 +61,7 @@ const Modal = ({ handleClose, text }) => {
                 style={{ zIndex: "2", display: "" }}
             >
                 <ModalText text="testing TExt" />
-                <ModalButton onClick="testing Label" label="Close" />
+                <ModalButton onClick={handleClose} label="Close" />
             </motion.div>
         </Backdrop>
     )
