@@ -4,6 +4,27 @@ import Backdrop from "./Backdrop"
 const Modal = ({ handleClose, text }) => {
     const dropIn = {
         hidden: {
+            y: "-100vh",
+            opacity: 0,
+        },
+        visible: {
+            y: "0",
+            opacity: 1,
+            transition: {
+                duration: 0.1,
+                type: "spring",
+                damping: 25,
+                stiffness: 500,
+            },
+        },
+        exit: {
+            y: "100vh",
+            opacity: 0,
+        },
+    };
+
+    const flip = {
+        hidden: {
             transform: "scale(0) rotateX(-360deg)",
             opacity: 0,
             transition: {
@@ -55,7 +76,7 @@ const Modal = ({ handleClose, text }) => {
                 drag
                 onClick={(e) => e.stopPropagation()}  // Prevent click from closing modal
                 className="modal orange-gradient"
-                variants={dropIn}
+                variants={flip}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
