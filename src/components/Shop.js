@@ -105,6 +105,15 @@ function Shop() {
         }, 1);
     }, [])
 
+    const navToDetailProduct = () => {
+        setOnHome(false)
+        document.getElementById("navbar").classList.remove("stickyHeader")
+        document.getElementById("iconNavbar").classList.remove("displayNone")
+        document.getElementById("buttonNavbar").classList.remove("displayNone")
+        document.getElementById("titleNavbar").classList.remove("flexgrow0")
+        history.push("detailproduct");
+    };
+
     return (
         <Grid id="mainBodyShop" container spacing={2} >
             <Grid xs={0} md={2} style={{ display: isMDthreshold ? "none" : "" }}>
@@ -153,8 +162,8 @@ function Shop() {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small">View</Button>
-                                        <Button size="small">Edit</Button>
+                                        <Button onClick={navToDetailProduct} size="small">View</Button>
+                                        <Button onClick={navToDetailProduct} size="small">Edit</Button>
                                     </CardActions>
                                 </Card>
                             </Grid>

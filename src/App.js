@@ -15,6 +15,7 @@ import {
 import Shop from './components/Shop';
 import { DataContextProvider } from './context/DataContext';
 import Checkout from './components/Checkout';
+import DetailProduct from './components/DetailProduct';
 
 function App() {
   const darkTheme = createTheme({
@@ -40,6 +41,7 @@ function App() {
         <Route exact path="/" component={Content} />
         <Route path="/shop" component={Shop} />
         <Route path="/checkout" component={Checkout} />
+        <Route path="/detailproduct" component={DetailProduct} />
         <Footer></Footer>
       </div>
     );
