@@ -16,6 +16,12 @@
     transition: all 2s;
 }
 
+.flexgrow1 {
+    // animation: mymove 3s;
+    animation-fill-mode: forwards;
+    flex-grow: 1;
+    transition: all 2s;
+}
 
 .dissapearText {
     animation: mymove 3s;
