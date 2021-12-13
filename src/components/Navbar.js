@@ -138,10 +138,7 @@ function Navbar() {
                 document.getElementById("iconNavbar").classList.remove("displayNone")
                 document.getElementById("buttonNavbar").classList.remove("dissapearText")
                 document.getElementById("titleNavbar").classList.remove("flexgrow0")
-                setTimeout(() => {
-                    document.getElementById("titleNavbar").classList.add("flexgrow1")
-                }, 1);
-                // document.getElementById("titleNavbar").classList.add("flexgrow1")
+                document.getElementById("titleNavbar").classList.add("flexgrow1")
             }
         }
     };
