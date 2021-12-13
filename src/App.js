@@ -14,6 +14,7 @@ import {
 } from "react-router-dom";
 import Shop from './components/Shop';
 import { DataContextProvider } from './context/DataContext';
+import Checkout from './components/Checkout';
 
 function App() {
   const darkTheme = createTheme({
@@ -38,6 +39,7 @@ function App() {
         <Navbar></Navbar>
         <Route exact path="/" component={Content} />
         <Route path="/shop" component={Shop} />
+        <Route path="/checkout" component={Checkout} />
         <Footer></Footer>
       </div>
     );

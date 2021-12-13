@@ -67,13 +67,13 @@ function Navbar() {
         history.push("shop");
     };
 
-    const openModalContact = () => {
+    const navToCheckout = () => {
         setOnHome(false)
         document.getElementById("navbar").classList.remove("stickyHeader")
         document.getElementById("iconNavbar").classList.remove("displayNone")
         document.getElementById("buttonNavbar").classList.remove("displayNone")
         document.getElementById("titleNavbar").classList.remove("flexgrow0")
-        history.push("shop");
+        history.push("checkout");
     };
 
     const list = (anchor, index) => (
@@ -99,7 +99,7 @@ function Navbar() {
                     </ListItemIcon>
                     <ListItemText primary="Buy Now" />
                 </ListItem>
-                <ListItem onClick={navToShop} button key="button2">
+                <ListItem onClick={navToCheckout} button key="button2">
                     <ListItemIcon>
                         <ShoppingCartIcon />
                     </ListItemIcon>
