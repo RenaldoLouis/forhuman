@@ -77,7 +77,7 @@ function Navbar() {
     };
 
     const navToHome = () => {
-        setOnHome(false)
+        setOnHome(true)
         document.getElementById("navbar").classList.remove("stickyHeader")
         document.getElementById("iconNavbar").classList.remove("displayNone")
         document.getElementById("buttonNavbar").classList.remove("displayNone")
