@@ -76,6 +76,15 @@ function Navbar() {
         history.push("checkout");
     };
 
+    const navToHome = () => {
+        setOnHome(false)
+        document.getElementById("navbar").classList.remove("stickyHeader")
+        document.getElementById("iconNavbar").classList.remove("displayNone")
+        document.getElementById("buttonNavbar").classList.remove("displayNone")
+        document.getElementById("titleNavbar").classList.remove("flexgrow0")
+        history.push("/");
+    };
+
     const list = (anchor, index) => (
         <Box
             key={index}
@@ -180,7 +189,7 @@ function Navbar() {
                         >
                             {list("bottom")}
                         </Drawer>
-                        <Typography id="titleNavbar" variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        <Typography style={{ cursor: "pointer" }} onClick={navToHome} id="titleNavbar" variant="h6" component="div" sx={{ flexGrow: 1 }}>
                             ForHuman
                         </Typography>
                         <Button id="buttonNavbar" color="inherit">Login</Button>
