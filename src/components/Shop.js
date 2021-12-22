@@ -114,6 +114,10 @@ function Shop() {
         history.push("detailproduct");
     };
 
+    const addToCart = () => {
+        alert("added to cart")
+    }
+
     return (
         <Grid id="mainBodyShop" container spacing={2} >
             <Grid xs={0} md={2} style={{ display: isMDthreshold ? "none" : "" }}>
@@ -162,8 +166,8 @@ function Shop() {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button onClick={navToDetailProduct} size="small">View</Button>
-                                        <Button onClick={navToDetailProduct} size="small">Edit</Button>
+                                        <Button onClick={addToCart} size="small">Add to Cart</Button>
+                                        <Button onClick={navToDetailProduct} size="small">Detail</Button>
                                     </CardActions>
                                 </Card>
                             </Grid>
