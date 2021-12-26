@@ -7,6 +7,10 @@
   height: 100%;
 }
 
+solid {
+  border-top: 3px solid #bbb;
+}
+
 .slick-slide {
   @media(min-width:1332px) {
     width: 520px !important;

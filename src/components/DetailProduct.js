@@ -89,28 +89,32 @@ function DetailProduct() {
 
     return (
         <Grid container spacing={2}>
-            {/* <Container id="carouselDetail" sx={{ py: 3 }}> */}
             <Grid id="slider" sx={{ pt: 2 }} xs={12}>
-                <Slider id="slider" {...settings}>
+                {/* <Slider id="slider" {...settings}>
                     {catalogData.map((data) => (
                         // <div>
                         <img className="fullImage" src={data.image} alt={data.name}></img>
                         //</div> 
                     ))}
-                </Slider>
+                </Slider> */}
             </Grid>
-            {/* </Container> */}
-            <Grid container xs={12}>
-                <Grid item xs={4}>
-                    <div>1</div>
+            <Container sx={{ pr: 0 }}>
+                <Grid container sx={{ p: 3 }} xs={12}>
+                    <Grid align="left" item xs={4}>
+                        <div>For Human Kanye West Edition</div>
+                        <div>Rp 100.000</div>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <div>Available Size</div>
+                        <div>X L M</div>
+                    </Grid>
+                    <Grid align="right" item xs={4}>
+                        <div>add to cart</div>
+                    </Grid>
                 </Grid>
-                <Grid item xs={4}>
-                    <div>2</div>
-                </Grid>
-                <Grid item xs={4}>
-                    <div>3</div>
-                </Grid>
-            </Grid>
+                <hr className="solid" />
+                asd
+            </Container>
         </Grid >
     )
 }
