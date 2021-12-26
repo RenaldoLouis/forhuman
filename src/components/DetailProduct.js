@@ -83,21 +83,25 @@ function DetailProduct() {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: isMobile ? 1 : 3,
+        slidesToShow: isMobile ? 1 : 2,
         slidesToScroll: 1
     };
 
     return (
         <Grid container spacing={2}>
+
             <Grid id="slider" sx={{ pt: 2 }} xs={12}>
-                {/* <Slider id="slider" {...settings}>
-                    {catalogData.map((data) => (
-                        // <div>
-                        <img className="fullImage" src={data.image} alt={data.name}></img>
-                        //</div> 
-                    ))}
-                </Slider> */}
+                <Container>
+                    <Slider id="slider" {...settings}>
+                        {catalogData.map((data) => (
+                            // <div>
+                            <img className="fullImage" src={data.image} alt={data.name}></img>
+                            //</div> 
+                        ))}
+                    </Slider>
+                </Container>
             </Grid>
+
             <Container sx={{ pr: 0 }}>
                 <Grid container sx={{ p: 3 }} xs={12}>
                     <Grid align="left" item xs={4}>
