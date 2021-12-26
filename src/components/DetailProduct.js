@@ -55,12 +55,12 @@ function DetailProduct() {
     const catalogData = [{
         name: "SUPERTURF X ATMOS",
         description: "Bright,bold and glazed",
-        image: "product3.jpeg"
+        image: "product1.jpeg"
     },
     {
         name: "Ultraboost DNA City Pack",
         description: "Own your unique style in contemporary",
-        image: "product3.jpeg"
+        image: "product2.jpeg"
     },
     {
         name: "SUPERNOVA",
