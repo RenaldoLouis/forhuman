@@ -16,7 +16,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
-import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {
@@ -28,29 +27,12 @@ import {
     useHistory
 } from "react-router-dom";
 import { DataContext } from "../context/DataContext"
+//Carousel Libary
+import Slider from "react-slick";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function DetailProduct() {
-
-    const responsive = {
-        superLargeDesktop: {
-            // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 3000 },
-            items: 5
-        },
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 3
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 2
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1
-        }
-    };
-
     const catalogData = [{
         name: "SUPERTURF X ATMOS",
         description: "Bright,bold and glazed",
@@ -78,48 +60,25 @@ function DetailProduct() {
     },
     ]
 
-    useEffect(() => {
-        document.addEventListener('readystatechange', event => {
-            // When window loaded ( external resources are loaded too- `css`,`src`, etc...) 
-            if (event.target.readyState === "complete") {
-                document.getElementById("carouselDetail").style.maxWidth = "100%";
-            }
-        });
-    }, [])
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1
+    };
 
     return (
         <Grid container spacing={2}>
-            <Container id="carouselDetail" sx={{ py: 2 }} style={{ marginLeft: "0", marginRight: "0" }}>
-                <Grid >
-                    <Carousel
-                        swipeable={true}
-                        draggable={true}
-                        showDots={false}
-                        responsive={responsive}
-                        ssr={true} // means to render carousel on server-side.
-                        infinite={true}
-                        autoPlaySpeed={1000}
-                        keyBoardControl={true}
-                        customTransition="transform 500ms ease-in-out"
-                        transitionDuration={1000}
-                        containerClass="carousel-container carousel-heigth"
-                        dotListClass="custom-dot-list-style"
-                        itemClass="carousel-item-padding-40-px"
-                        removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
-                    >
-                        {catalogData.map((catalogData) => (
-                            <Card
-                                sx={{ display: 'flex', flexDirection: 'column', m: "1%", height: "100%", marginLeft: "1rem" }}
-                            >
-                                <CardMedia
-                                    component="img"
-                                    sx={{ height: '100%', }}
-                                    image={catalogData.image}
-                                    alt="random"
-                                />
-                            </Card>
+            <Container id="carouselDetail" sx={{ py: 3 }}>
+                <Grid xs={12}>
+                    <Slider className="fullImage" id="slider" {...settings}>
+                        {catalogData.map((data) => (
+                            <div>
+                                <img style={{ width: "100%" }} src={data.image} alt={data.name}></img>
+                            </div>
                         ))}
-                    </Carousel>
+                    </Slider>
                 </Grid>
             </Container>
             <Grid container xs={12}>
