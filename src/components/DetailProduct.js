@@ -33,15 +33,34 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 function DetailProduct() {
+    const { setShopPageHeight, shopPageHeight, isLoading, setLoading, toastify, toastPopup, setOnHome, isHome } = useContext(DataContext);
+
+    const [width, setWidth] = useState(window.innerWidth);
+    const [height, setHeight] = useState(window.innerHeight);
+
+    let isMobile = width <= 570;
+    let isTablet = width <= 1024;
+
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth);
+    }
+    function handleWindowHeightSizeChange() {
+        setHeight(window.innerHeight);
+    }
+
+    useEffect(() => {
+        setOnHome(true);
+    }, [])
+
     const catalogData = [{
         name: "SUPERTURF X ATMOS",
         description: "Bright,bold and glazed",
-        image: "product1.jpeg"
+        image: "product3.jpeg"
     },
     {
         name: "Ultraboost DNA City Pack",
         description: "Own your unique style in contemporary",
-        image: "product2.jpeg"
+        image: "product3.jpeg"
     },
     {
         name: "SUPERNOVA",
@@ -64,23 +83,23 @@ function DetailProduct() {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: isMobile ? 1 : 3,
         slidesToScroll: 1
     };
 
     return (
         <Grid container spacing={2}>
-            <Container id="carouselDetail" sx={{ py: 3 }}>
-                <Grid xs={12}>
-                    <Slider className="fullImage" id="slider" {...settings}>
-                        {catalogData.map((data) => (
-                            <div>
-                                <img style={{ width: "100%" }} src={data.image} alt={data.name}></img>
-                            </div>
-                        ))}
-                    </Slider>
-                </Grid>
-            </Container>
+            {/* <Container id="carouselDetail" sx={{ py: 3 }}> */}
+            <Grid id="slider" sx={{ pt: 2 }} xs={12}>
+                <Slider id="slider" {...settings}>
+                    {catalogData.map((data) => (
+                        // <div>
+                        <img className="fullImage" src={data.image} alt={data.name}></img>
+                        //</div> 
+                    ))}
+                </Slider>
+            </Grid>
+            {/* </Container> */}
             <Grid container xs={12}>
                 <Grid item xs={4}>
                     <div>1</div>
@@ -92,7 +111,7 @@ function DetailProduct() {
                     <div>3</div>
                 </Grid>
             </Grid>
-        </Grid>
+        </Grid >
     )
 }
 
