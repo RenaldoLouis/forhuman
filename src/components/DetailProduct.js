@@ -91,7 +91,7 @@ function DetailProduct() {
         <Grid container spacing={2}>
 
             <Grid id="slider" sx={{ pt: 2 }} xs={12}>
-                <Container>
+                <Container sx={{ pl: 5 }}>
                     <Slider id="slider" {...settings}>
                         {catalogData.map((data) => (
                             // <div>
