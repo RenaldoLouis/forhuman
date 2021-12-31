@@ -47,6 +47,11 @@ function Shop() {
     }
 
     useEffect(() => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }, [])
+
+    useEffect(() => {
         window.addEventListener("resize", handleWindowSizeChange);
         window.addEventListener("resize", handleWindowHeightSizeChange);
         return () => {

@@ -55,12 +55,12 @@ function DetailProduct() {
     const catalogData = [{
         name: "SUPERTURF X ATMOS",
         description: "Bright,bold and glazed",
-        image: "product1.jpeg"
+        image: "product3.jpeg"
     },
     {
         name: "Ultraboost DNA City Pack",
         description: "Own your unique style in contemporary",
-        image: "product2.jpeg"
+        image: "product3.jpeg"
     },
     {
         name: "SUPERNOVA",
@@ -83,7 +83,7 @@ function DetailProduct() {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: isMobile ? 1 : 2,
+        slidesToShow: isMobile ? 1 : 3,
         slidesToScroll: 1
     };
 
@@ -91,15 +91,15 @@ function DetailProduct() {
         <Grid container spacing={2}>
 
             <Grid id="slider" sx={{ pt: 2 }} xs={12}>
-                <Container sx={{ pl: 5 }}>
-                    <Slider id="slider" {...settings}>
-                        {catalogData.map((data) => (
-                            // <div>
-                            <img className="fullImage" src={data.image} alt={data.name}></img>
-                            //</div> 
-                        ))}
-                    </Slider>
-                </Container>
+                {/* <Container sx={{ pl: 5 }}> */}
+                <Slider id="slider" {...settings}>
+                    {catalogData.map((data) => (
+                        // <div>
+                        <img className="fullImage" src={data.image} alt={data.name}></img>
+                        //</div> 
+                    ))}
+                </Slider>
+                {/* </Container> */}
             </Grid>
 
             <Container sx={{ pr: 0 }}>
