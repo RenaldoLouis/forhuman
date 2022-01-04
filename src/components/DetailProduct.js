@@ -134,10 +134,10 @@ function DetailProduct() {
                     <h1>ForHuman</h1>
                 </Box>
                 <Box sx={{ m: 0.5, mb: 2 }} style={{ textAlign: "left" }}>
-                    <h3>For Human Kanye West Edition</h3>
+                    <h3>{cookies.selectedDetailProduct.name}</h3>
                 </Box>
                 <Box sx={{ m: 0.5, mb: 3 }} style={{ textAlign: "left" }}>
-                    Bring it back home in our Icon Clash Top. It's got smooth, sweat-wicking fabric that'll keep you feeling cool when the tempo heats up. We added a watch window on the sleeves so you can keep track of your time without missing a step. Flowery graphics at the shoulders nod to the joys of wherever we go to rest and recover after a long run.
+                    {cookies.selectedDetailProduct.description}
                 </Box>
             </Container>
         </Grid >
