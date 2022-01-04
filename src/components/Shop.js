@@ -31,10 +31,11 @@ import { DataContext } from "../context/DataContext"
 import StickyBox from "react-sticky-box/dist/esnext";
 
 function Shop() {
-    const { setShopPageHeight, shopPageHeight, isLoading, setLoading, toastify, toastPopup, setOnHome, isHome } = useContext(DataContext);
+    const { setShopPageHeight, shopPageHeight, isLoading, setLoading, toastify, toastPopup, setOnHome, isHome, isFirstTimeLoadShop, setFirstTimeLoadShop } = useContext(DataContext);
 
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
+
 
     let isMobile = width <= 570;
     let isMDthreshold = width <= 900;
@@ -47,8 +48,13 @@ function Shop() {
     }
 
     useEffect(() => {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
+        if (isFirstTimeLoadShop) {
+            setFirstTimeLoadShop(false)
+            setTimeout(() => {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }, 1000);
+        }
     }, [])
 
     useEffect(() => {
@@ -150,29 +156,28 @@ function Shop() {
                         <Button style={{ display: isMDthreshold ? "" : "none" }} variant="outlined">Filter</Button>
                     </Grid>
                     <Grid container spacing={4}>
-                        {cards.map((card) => (
+                        {catalogData.map((card) => (
                             <Grid item key={card} xs={12} sm={4} md={4}>
                                 <Card
                                     sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                                 >
                                     <CardMedia
                                         component="img"
-                                        // sx={{pt: '50%', }}
-                                        image="https://source.unsplash.com/random"
+                                        sx={{ height: '100%', }}
+                                        image={card.image}
                                         alt="random"
                                     />
                                     <CardContent sx={{ flexGrow: 0 }}>
                                         <Typography gutterBottom variant="h5" component="h2">
-                                            Heading
+                                            {card.name}
                                         </Typography>
                                         <Typography>
-                                            This is a media card. You can use this section to describe the
-                                            content.
+                                            {card.description}
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button onClick={addToCart} size="small">Add to Cart</Button>
-                                        <Button onClick={navToDetailProduct} size="small">Detail</Button>
+                                        <Button style={{ color: "white" }} onClick={addToCart} size="small">Add to Cart</Button>
+                                        <Button style={{ color: "white" }} onClick={navToDetailProduct} size="small">Detail</Button>
                                     </CardActions>
                                 </Card>
                             </Grid>

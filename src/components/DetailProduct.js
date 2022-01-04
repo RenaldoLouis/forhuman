@@ -87,15 +87,23 @@ function DetailProduct() {
         slidesToScroll: 1
     };
 
+    useEffect(() => {
+        setTimeout(() => {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }, 1);
+
+    }, [])
+
     return (
         <Grid container spacing={2}>
 
             <Grid id="slider" sx={{ pt: 2 }} xs={12}>
                 {/* <Container sx={{ pl: 5 }}> */}
-                <Slider id="slider" {...settings}>
+                <Slider sx={{ height: '100%', }} styled={{ width: "100vw" }} id="slider" {...settings}>
                     {catalogData.map((data) => (
                         // <div>
-                        <img className="fullImage" src={data.image} alt={data.name}></img>
+                        <img sx={{ height: '100%', }} className="fullImage" src={data.image} alt={data.name}></img>
                         //</div> 
                     ))}
                 </Slider>
@@ -117,7 +125,15 @@ function DetailProduct() {
                     </Grid>
                 </Grid>
                 <hr className="solid" />
-                asd
+                <Box sx={{ m: 0.5, mb: 3 }} style={{ textAlign: "left", }}>
+                    <h1>ForHuman</h1>
+                </Box>
+                <Box sx={{ m: 0.5, mb: 2 }} style={{ textAlign: "left" }}>
+                    <h3>For Human Kanye West Edition</h3>
+                </Box>
+                <Box sx={{ m: 0.5, mb: 3 }} style={{ textAlign: "left" }}>
+                    Bring it back home in our Icon Clash Top. It's got smooth, sweat-wicking fabric that'll keep you feeling cool when the tempo heats up. We added a watch window on the sleeves so you can keep track of your time without missing a step. Flowery graphics at the shoulders nod to the joys of wherever we go to rest and recover after a long run.
+                </Box>
             </Container>
         </Grid >
     )

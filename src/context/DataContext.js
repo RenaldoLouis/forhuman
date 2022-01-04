@@ -17,6 +17,7 @@ export const DataContextProvider = (props) => {
     const [isLoading, setLoading] = useState(false);
     const [isHome, setOnHome] = useState(true);
     const [toastPopup, setToastPopup] = useState({});
+    const [isFirstTimeLoadShop, setFirstTimeLoadShop] = useState(true);
     const [shopPageHeight, setShopPageHeight] = useState()
 
     const toastify = (type, text) => {
@@ -40,7 +41,8 @@ export const DataContextProvider = (props) => {
         setOnHome,
         isHome,
         setShopPageHeight,
-        shopPageHeight
+        shopPageHeight,
+        isFirstTimeLoadShop, setFirstTimeLoadShop
     };
 
     useEffect(() => {
