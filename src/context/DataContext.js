@@ -19,6 +19,7 @@ export const DataContextProvider = (props) => {
     const [toastPopup, setToastPopup] = useState({});
     const [isFirstTimeLoadShop, setFirstTimeLoadShop] = useState(true);
     const [shopPageHeight, setShopPageHeight] = useState()
+    const [selectedDetailData, setSelectedDetailData] = useState({})
 
     const toastify = (type, text) => {
         if (type === "success") {
@@ -42,14 +43,16 @@ export const DataContextProvider = (props) => {
         isHome,
         setShopPageHeight,
         shopPageHeight,
-        isFirstTimeLoadShop, setFirstTimeLoadShop
+        isFirstTimeLoadShop,
+        setFirstTimeLoadShop,
+        selectedDetailData,
+        setSelectedDetailData
     };
 
     useEffect(() => {
         if (location.pathname === "/shop") {
             setOnHome(false)
             setTimeout(() => {
-                console.log("jalan")
                 var containerHeight = document.getElementById('mainBodyShop').offsetHeight
                 setShopPageHeight(containerHeight)
             }, 1);

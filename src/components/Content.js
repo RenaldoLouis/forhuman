@@ -151,8 +151,9 @@ function Content() {
                         itemClass="carousel-item-padding-40-px"
                         removeArrowOnDeviceType={["tablet", "mobile"]}
                     >
-                        {catalogData.map((catalogData) => (
+                        {catalogData.map((catalogData, index) => (
                             <Card
+                                key={index}
                                 sx={{ display: 'flex', flexDirection: 'column', m: "1%", height: "100%", marginLeft: "1rem" }}
                             >
                                 <CardMedia
@@ -183,6 +184,7 @@ function Content() {
                     {cards.map((card, index) => (
                         <Grid item key={index} xs={12} sm={4} md={4}>
                             <Card
+                                key={index}
                                 sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                             >
                                 <CardMedia

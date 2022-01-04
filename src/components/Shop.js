@@ -31,7 +31,7 @@ import { DataContext } from "../context/DataContext"
 import StickyBox from "react-sticky-box/dist/esnext";
 
 function Shop() {
-    const { setShopPageHeight, shopPageHeight, isLoading, setLoading, toastify, toastPopup, setOnHome, isHome, isFirstTimeLoadShop, setFirstTimeLoadShop } = useContext(DataContext);
+    const { setShopPageHeight, shopPageHeight, isLoading, setLoading, toastify, toastPopup, setOnHome, isHome, isFirstTimeLoadShop, setFirstTimeLoadShop, selectedDetailData, setSelectedDetailData } = useContext(DataContext);
 
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
@@ -80,27 +80,33 @@ function Shop() {
     const catalogData = [{
         name: "SUPERTURF X ATMOS",
         description: "Bright,bold and glazed",
-        image: "product1.jpeg"
+        image: "product1.jpeg",
+        detailImage1: "product1.jpeg"
     },
     {
         name: "Ultraboost DNA City Pack",
         description: "Own your unique style in contemporary",
-        image: "product2.jpeg"
+        image: "product2.jpeg",
+        detailImage1: "product2.jpeg"
     },
     {
         name: "SUPERNOVA",
         description: "Why lives just one liffe when you can live them all?",
-        image: "product3.jpeg"
+        image: "product3.jpeg",
+        detailImage1: "product3.jpeg",
+        detailImage2: "product5.jpeg"
     },
     {
         name: "ADIDAS X MARIMEKKO",
         description: "Embrace your own evolution",
-        image: "product4.jpeg"
+        image: "product4.jpeg",
+        detailImage1: "product4.jpeg"
     },
     {
         name: "ADIDAS X PARLEY",
         description: "A better choice for our planet",
-        image: "product5.jpeg"
+        image: "product5.jpeg",
+        detailImage1: "product5.jpeg"
     },
     ]
 
@@ -116,7 +122,8 @@ function Shop() {
         }, 1);
     }, [])
 
-    const navToDetailProduct = () => {
+    const navToDetailProduct = (data) => {
+        setSelectedDetailData(data)
         setOnHome(false)
         document.getElementById("navbar").classList.remove("stickyHeader")
         document.getElementById("iconNavbar").classList.remove("displayNone")
@@ -132,6 +139,7 @@ function Shop() {
     return (
         <Grid id="mainBodyShop" container spacing={2} >
             <Grid xs={0} md={2} style={{ display: isMDthreshold ? "none" : "" }}>
+                {/* <Item> */}
                 <Container sx={{ py: 2, ml: 2 }} maxWidth="false">
                     {/* End hero unit */}
                     <Grid style={{ textAlign: "start", height: shopPageHeight }} sx={{ py: 1 }}>
@@ -140,6 +148,7 @@ function Shop() {
                         </StickyBox>
                     </Grid>
                 </Container>
+                {/* </Item> */}
             </Grid>
             <Grid xs={12} md={10}>
                 <Container sx={{ py: 2, ml: 1 }} maxWidth="false">
@@ -156,9 +165,10 @@ function Shop() {
                         <Button style={{ display: isMDthreshold ? "" : "none" }} variant="outlined">Filter</Button>
                     </Grid>
                     <Grid container spacing={4}>
-                        {catalogData.map((card) => (
-                            <Grid item key={card} xs={12} sm={4} md={4}>
+                        {catalogData.map((card, index) => (
+                            <Grid item key={index} xs={12} sm={4} md={4}>
                                 <Card
+                                    key={index}
                                     sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                                 >
                                     <CardMedia
@@ -177,7 +187,7 @@ function Shop() {
                                     </CardContent>
                                     <CardActions>
                                         <Button style={{ color: "white" }} onClick={addToCart} size="small">Add to Cart</Button>
-                                        <Button style={{ color: "white" }} onClick={navToDetailProduct} size="small">Detail</Button>
+                                        <Button style={{ color: "white" }} onClick={() => navToDetailProduct(card)} size="small">Detail</Button>
                                     </CardActions>
                                 </Card>
                             </Grid>

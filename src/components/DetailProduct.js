@@ -33,7 +33,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 function DetailProduct() {
-    const { setShopPageHeight, shopPageHeight, isLoading, setLoading, toastify, toastPopup, setOnHome, isHome } = useContext(DataContext);
+    const { setShopPageHeight, shopPageHeight, isLoading, setLoading, toastify, toastPopup, setOnHome, isHome, selectedDetailData, setSelectedDetailData, } = useContext(DataContext);
 
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
@@ -55,22 +55,26 @@ function DetailProduct() {
     const catalogData = [{
         name: "SUPERTURF X ATMOS",
         description: "Bright,bold and glazed",
-        image: "product3.jpeg"
+        image: "product3.jpeg",
+        detailImage1: "product3.jpeg"
     },
     {
         name: "Ultraboost DNA City Pack",
         description: "Own your unique style in contemporary",
-        image: "product3.jpeg"
+        image: "product3.jpeg",
+        detailImage1: "product3.jpeg"
     },
     {
         name: "SUPERNOVA",
         description: "Why lives just one liffe when you can live them all?",
-        image: "product3.jpeg"
+        image: "product3.jpeg",
+        detailImage1: "product3.jpeg"
     },
     {
         name: "ADIDAS X MARIMEKKO",
         description: "Embrace your own evolution",
-        image: "product4.jpeg"
+        image: "product4.jpeg",
+        detailImage1: "product4.jpeg"
     },
     {
         name: "ADIDAS X PARLEY",
@@ -83,7 +87,7 @@ function DetailProduct() {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: isMobile ? 1 : 3,
+        slidesToShow: isMobile ? 1 : 1,
         slidesToScroll: 1
     };
 
@@ -92,7 +96,6 @@ function DetailProduct() {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }, 1);
-
     }, [])
 
     return (
@@ -100,12 +103,12 @@ function DetailProduct() {
 
             <Grid id="slider" sx={{ pt: 2 }} xs={12}>
                 {/* <Container sx={{ pl: 5 }}> */}
-                <Slider sx={{ height: '100%', }} styled={{ width: "100vw" }} id="slider" {...settings}>
-                    {catalogData.map((data) => (
-                        // <div>
-                        <img sx={{ height: '100%', }} className="fullImage" src={data.image} alt={data.name}></img>
-                        //</div> 
-                    ))}
+                <Slider sx={{ height: '100%', }} style={{ width: "100vw" }} id="slider" {...settings}>
+                    <img key="image1" sx={{ height: '100%', }} className="fullImage" src={selectedDetailData.detailImage1} alt={selectedDetailData.name}></img>
+                    <img key="image2" sx={{ height: '100%', }} className="fullImage" src={selectedDetailData.detailImage2} alt={selectedDetailData.name}></img>
+                    <img key="image3" sx={{ height: '100%', }} className="fullImage" src={selectedDetailData.detailImage2} alt={selectedDetailData.name}></img>
+                    <img key="image4" sx={{ height: '100%', }} className="fullImage" src={selectedDetailData.detailImage2} alt={selectedDetailData.name}></img>
+                    <img key="image5" sx={{ height: '100%', }} className="fullImage" src={selectedDetailData.detailImage2} alt={selectedDetailData.name}></img>
                 </Slider>
                 {/* </Container> */}
             </Grid>
