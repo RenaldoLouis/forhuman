@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+/* the slides */
+.slick-slide {
+  overflow: hidden;
+  overflow-x: hidden;
+}
+
+/* the parent */
+// .slick-list {
+//   margin: 0 -10px;
+// }
+
+
 .slick-slider {
   overflow: hidden;
   overflow-x: hidden;
