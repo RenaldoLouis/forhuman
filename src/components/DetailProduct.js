@@ -89,8 +89,8 @@ function DetailProduct() {
         dots: false,
         infinite: true,
         speed: 1000,
-        slidesToShow: isMobile ? 1 : 1,
-        slidesToScroll: 1
+        slidesToShow: isMobile ? 1 : 3,
+        slidesToScroll: 3
     };
 
     useEffect(() => {
