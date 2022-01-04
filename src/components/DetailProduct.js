@@ -31,12 +31,14 @@ import { DataContext } from "../context/DataContext"
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useCookies } from 'react-cookie';
 
 function DetailProduct() {
     const { setShopPageHeight, shopPageHeight, isLoading, setLoading, toastify, toastPopup, setOnHome, isHome, selectedDetailData, setSelectedDetailData, } = useContext(DataContext);
 
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
+    const [cookies, setCookie] = useCookies(['selectedDetailProduct']);
 
     let isMobile = width <= 570;
     let isTablet = width <= 1024;
@@ -87,8 +89,8 @@ function DetailProduct() {
         dots: false,
         infinite: true,
         speed: 1000,
-        slidesToShow: isMobile ? 1 : 3,
-        slidesToScroll: 3
+        slidesToShow: isMobile ? 1 : 1,
+        slidesToScroll: 1
     };
 
     useEffect(() => {
@@ -104,11 +106,11 @@ function DetailProduct() {
             <Grid style={{ overflow: "hidden" }} sx={{ pt: 2 }} xs={12}>
                 {/* <Container sx={{ pl: 5 }}> */}
                 <Slider style={{ overflow: "hidden" }} sx={{ height: '100%', width: "100%", overflow: "hidden" }} id="slider" {...settings}>
-                    <img key="image1" sx={{ height: '100%', }} className="fullImage" src={selectedDetailData.detailImage1} alt={selectedDetailData.name}></img>
-                    <img key="image2" sx={{ height: '100%', }} className="fullImage" src={selectedDetailData.detailImage2} alt={selectedDetailData.name}></img>
-                    <img key="image3" sx={{ height: '100%', }} className="fullImage" src={selectedDetailData.detailImage2} alt={selectedDetailData.name}></img>
-                    <img key="image4" sx={{ height: '100%', }} className="fullImage" src={selectedDetailData.detailImage2} alt={selectedDetailData.name}></img>
-                    <img key="image5" sx={{ height: '100%', }} className="fullImage" src={selectedDetailData.detailImage2} alt={selectedDetailData.name}></img>
+                    <img key="image1" sx={{ height: '100%', }} className="fullImage" src={cookies.selectedDetailProduct.detailImage1} alt={cookies.selectedDetailProduct.name}></img>
+                    <img key="image2" sx={{ height: '100%', }} className="fullImage" src={cookies.selectedDetailProduct.detailImage2} alt={cookies.selectedDetailProduct.name}></img>
+                    <img key="image3" sx={{ height: '100%', }} className="fullImage" src={cookies.selectedDetailProduct.detailImage2} alt={cookies.selectedDetailProduct.name}></img>
+                    <img key="image4" sx={{ height: '100%', }} className="fullImage" src={cookies.selectedDetailProduct.detailImage2} alt={cookies.selectedDetailProduct.name}></img>
+                    <img key="image5" sx={{ height: '100%', }} className="fullImage" src={cookies.selectedDetailProduct.detailImage2} alt={cookies.selectedDetailProduct.name}></img>
                 </Slider>
                 {/* </Container> */}
             </Grid>

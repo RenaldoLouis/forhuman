@@ -29,13 +29,14 @@ import {
 } from "react-router-dom";
 import { DataContext } from "../context/DataContext"
 import StickyBox from "react-sticky-box/dist/esnext";
+import { useCookies } from 'react-cookie';
 
 function Shop() {
     const { setShopPageHeight, shopPageHeight, isLoading, setLoading, toastify, toastPopup, setOnHome, isHome, isFirstTimeLoadShop, setFirstTimeLoadShop, selectedDetailData, setSelectedDetailData } = useContext(DataContext);
 
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
-
+    const [cookies, setCookie] = useCookies(['selectedDetailProduct']);
 
     let isMobile = width <= 570;
     let isMDthreshold = width <= 900;
@@ -124,6 +125,7 @@ function Shop() {
 
     const navToDetailProduct = (data) => {
         setSelectedDetailData(data)
+        setCookie("selectedDetailProduct", data)
         setOnHome(false)
         document.getElementById("navbar").classList.remove("stickyHeader")
         document.getElementById("iconNavbar").classList.remove("displayNone")

@@ -16,6 +16,7 @@ import Shop from './components/Shop';
 import { DataContextProvider } from './context/DataContext';
 import Checkout from './components/Checkout';
 import DetailProduct from './components/DetailProduct';
+import { CookiesProvider } from 'react-cookie';
 
 function App() {
   const darkTheme = createTheme({
@@ -51,11 +52,13 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <DataContextProvider>
-            <ThemeProvider theme={darkTheme}>
-              <Main></Main>
-            </ThemeProvider>
-          </DataContextProvider>
+          <CookiesProvider>
+            <DataContextProvider>
+              <ThemeProvider theme={darkTheme}>
+                <Main></Main>
+              </ThemeProvider>
+            </DataContextProvider>
+          </CookiesProvider>
         </Switch>
       </Router>
     </div>
