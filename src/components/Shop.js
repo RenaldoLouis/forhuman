@@ -54,7 +54,7 @@ function Shop() {
             setTimeout(() => {
                 document.body.scrollTop = 0;
                 document.documentElement.scrollTop = 0;
-            }, 1000);
+            }, 1);
         }
     }, [])
 
