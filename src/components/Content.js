@@ -119,6 +119,10 @@ function Content() {
         document.getElementById("buttonNavbar").classList.remove("displayNone")
         document.getElementById("titleNavbar").classList.remove("flexgrow0")
         history.push("shop");
+        setTimeout(() => {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }, 500);
     };
 
     return (
