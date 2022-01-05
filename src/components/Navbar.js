@@ -77,6 +77,8 @@ function Navbar() {
     };
 
     const navToHome = () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
         setOnHome(true)
         document.getElementById("navbar").classList.remove("stickyHeader")
         document.getElementById("iconNavbar").classList.remove("displayNone")
