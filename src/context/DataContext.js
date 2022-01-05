@@ -53,7 +53,7 @@ export const DataContextProvider = (props) => {
         if (location.pathname === "/shop") {
             setOnHome(false)
             setTimeout(() => {
-                var containerHeight = document.getElementById('mainBodyShop').offsetHeight
+                var containerHeight = document.getElementById('mainBodyShop').offsetHeight + 300
                 setShopPageHeight(containerHeight)
             }, 1);
         }

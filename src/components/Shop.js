@@ -13,6 +13,9 @@ import CardMedia from '@mui/material/CardMedia';
 import CssBaseline from '@mui/material/CssBaseline';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
@@ -30,6 +33,7 @@ import {
 import { DataContext } from "../context/DataContext"
 import StickyBox from "react-sticky-box/dist/esnext";
 import { useCookies } from 'react-cookie';
+
 
 function Shop() {
     const { setShopPageHeight, shopPageHeight, isLoading, setLoading, toastify, toastPopup, setOnHome, isHome, isFirstTimeLoadShop, setFirstTimeLoadShop, selectedDetailData, setSelectedDetailData } = useContext(DataContext);
@@ -144,9 +148,15 @@ function Shop() {
                 {/* <Item> */}
                 <Container sx={{ py: 2, ml: 2 }} maxWidth="false">
                     {/* End hero unit */}
-                    <Grid style={{ textAlign: "start", height: shopPageHeight }} sx={{ py: 1 }}>
+                    <Grid style={{ textAlign: "start", height: shopPageHeight }} sx={{ py: 3 }}>
                         <StickyBox offsetTop={20} offsetBottom={20}>
-                            <div>Sidebar</div>
+                            <div>
+                                Filter
+                                <FormGroup>
+                                    <FormControlLabel control={<Checkbox style={{ color: "black" }} defaultChecked />} label="All" />
+                                    <FormControlLabel control={<Checkbox style={{ color: "black", }} />} label="Forhuman2" />
+                                </FormGroup>
+                            </div>
                         </StickyBox>
                     </Grid>
                 </Container>
