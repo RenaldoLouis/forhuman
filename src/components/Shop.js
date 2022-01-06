@@ -174,32 +174,37 @@ function Shop() {
 
     useEffect(() => {
         let filteredAry = [];
+
         if (isfilterForHuman2 && !isFilterCategory.includes("second")) {
-            console.log("masuk")
             setTimeout(() => {
                 setFilterCategory((oldArray) => [...oldArray, "second"]);
             }, 1);
-
         } else {
             setTimeout(() => {
-                filteredAry = isFilterCategory.filter(e => e !== "second")
-                setFilterCategory(filteredAry)
+                if (isFilterCategory.includes("second") && !isfilterForHuman2) {
+                    console.log("masuk1 second")
+                    filteredAry = isFilterCategory.filter(e => e !== "second")
+                    setFilterCategory(filteredAry)
+                }
             }, 1);
         }
 
         if (isfilterForHumanKanye && !isFilterCategory.includes("Kanye")) {
             setFilterCategory((oldArray) => [...oldArray, "Kanye"]);
         } else {
-            filteredAry = isFilterCategory.filter(e => e !== 'Kanye')
-            setFilterCategory(filteredAry)
+            if (isFilterCategory.includes("Kanye") && !isfilterForHumanKanye) {
+                console.log("masuk2 Kanye")
+                filteredAry = isFilterCategory.filter(e => e !== 'Kanye')
+                setFilterCategory(filteredAry)
+            }
         }
 
     }, [isfilterForHuman2, isfilterForHumanKanye])
 
     useEffect(() => {
-        // console.log("isFilterCategory", isFilterCategory)
+        console.log("isFilterCategory", isFilterCategory)
     }, [isFilterCategory])
-    console.log("isFilterCategory", isFilterCategory)
+
     return (
         <Grid id="mainBodyShop" container spacing={2} >
             <Grid xs={0} md={2} style={{ display: isMDthreshold ? "none" : "" }}>
