@@ -21,6 +21,7 @@ import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { isEmpty } from "lodash";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {
     BrowserRouter as Router,
@@ -43,6 +44,7 @@ function Shop() {
     const [cookies, setCookie] = useCookies(['selectedDetailProduct']);
     const [isCatalogData, setCatalogData] = useState({});
     const [isfilterAll, setFilterAll] = useState(true);
+    const [isfilterProcess, setFilterProcess] = useState(false);
     const [isfilterForHuman2, setFilterForHuman2] = useState(false);
     const [isfilterForHumanKanye, setFilterForHumanKanye] = useState(false);
     const [isFilterCategory, setFilterCategory] = useState([])
@@ -91,6 +93,7 @@ function Shop() {
 
     const catalogData = [{
         name: "SUPERTURF X ATMOS",
+        tag: "second",
         description: "Bright,bold and glazed",
         image: "product1.jpeg",
         detailImage1: "product1.jpeg",
@@ -98,6 +101,7 @@ function Shop() {
     },
     {
         name: "Ultraboost DNA City Pack",
+        tag: "second",
         description: "Own your unique style in contemporary",
         image: "product2.jpeg",
         detailImage1: "product2.jpeg",
@@ -105,6 +109,7 @@ function Shop() {
     },
     {
         name: "SUPERNOVA",
+        tag: "kanye",
         description: "Why lives just one liffe when you can live them all?",
         image: "product3.jpeg",
         detailImage1: "product3.jpeg",
@@ -112,6 +117,7 @@ function Shop() {
     },
     {
         name: "ADIDAS X MARIMEKKO",
+        tag: "kanye",
         description: "Embrace your own evolution",
         image: "product4.jpeg",
         detailImage1: "product4.jpeg",
@@ -119,6 +125,7 @@ function Shop() {
     },
     {
         name: "ADIDAS X PARLEY",
+        tag: "kanye",
         description: "A better choice for our planet",
         image: "product5.jpeg",
         detailImage1: "product5.jpeg",
@@ -157,13 +164,13 @@ function Shop() {
     const filterDataForHuman2 = (e) => {
         setFilterAll(false);
         setFilterForHuman2(!isfilterForHuman2);
-
+        setFilterProcess(true)
     }
 
     const filterDataForHumanKanye = (e) => {
         setFilterAll(false);
         setFilterForHumanKanye(!isfilterForHumanKanye);
-
+        setFilterProcess(true)
     }
 
     useEffect(() => {
@@ -189,11 +196,11 @@ function Shop() {
             }, 1);
         }
 
-        if (isfilterForHumanKanye && !isFilterCategory.includes("Kanye")) {
-            setFilterCategory((oldArray) => [...oldArray, "Kanye"]);
+        if (isfilterForHumanKanye && !isFilterCategory.includes("kanye")) {
+            setFilterCategory((oldArray) => [...oldArray, "kanye"]);
         } else {
-            if (isFilterCategory.includes("Kanye") && !isfilterForHumanKanye && !isfilterAll) {
-                filteredAry = isFilterCategory.filter(e => e !== 'Kanye')
+            if (isFilterCategory.includes("kanye") && !isfilterForHumanKanye && !isfilterAll) {
+                filteredAry = isFilterCategory.filter(e => e !== 'kanye')
                 setFilterCategory(filteredAry)
             }
         }
@@ -201,7 +208,19 @@ function Shop() {
     }, [isfilterForHuman2, isfilterForHumanKanye])
 
     useEffect(() => {
-        console.log("isFilterCategory", isFilterCategory)
+        if (!isEmpty(isCatalogData) && isfilterProcess) {
+            let tempArray = [];
+
+            isCatalogData.forEach((e) => {
+                if (isFilterCategory.indexOf(e.tag) >= 0) {
+                    tempArray.push(e);
+                }
+            })
+
+            console.log("tempArray", tempArray)
+            setCatalogData(tempArray);
+            setFilterProcess(false)
+        }
     }, [isFilterCategory])
 
     return (
@@ -249,7 +268,7 @@ function Shop() {
                         <Button style={{ display: isMDthreshold ? "" : "none" }} variant="outlined">Filter</Button>
                     </Grid>
                     <Grid container spacing={4}>
-                        {catalogData.map((card, index) => (
+                        {!isEmpty(isCatalogData) && isCatalogData.map((card, index) => (
                             <Grid item key={index} xs={12} sm={4} md={4}>
                                 <Card
                                     key={index}
