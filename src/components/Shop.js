@@ -169,6 +169,7 @@ function Shop() {
     useEffect(() => {
         if (isfilterAll) {
             setCatalogData(catalogData)
+            setFilterCategory([])
         }
     }, [isfilterAll])
 
@@ -181,8 +182,7 @@ function Shop() {
             }, 1);
         } else {
             setTimeout(() => {
-                if (isFilterCategory.includes("second") && !isfilterForHuman2) {
-                    console.log("masuk1 second")
+                if (isFilterCategory.includes("second") && !isfilterForHuman2 && !isfilterAll) {
                     filteredAry = isFilterCategory.filter(e => e !== "second")
                     setFilterCategory(filteredAry)
                 }
@@ -192,8 +192,7 @@ function Shop() {
         if (isfilterForHumanKanye && !isFilterCategory.includes("Kanye")) {
             setFilterCategory((oldArray) => [...oldArray, "Kanye"]);
         } else {
-            if (isFilterCategory.includes("Kanye") && !isfilterForHumanKanye) {
-                console.log("masuk2 Kanye")
+            if (isFilterCategory.includes("Kanye") && !isfilterForHumanKanye && !isfilterAll) {
                 filteredAry = isFilterCategory.filter(e => e !== 'Kanye')
                 setFilterCategory(filteredAry)
             }
