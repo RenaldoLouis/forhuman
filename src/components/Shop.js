@@ -41,7 +41,13 @@ function Shop() {
     const [width, setWidth] = useState(window.innerWidth);
     const [height, setHeight] = useState(window.innerHeight);
     const [cookies, setCookie] = useCookies(['selectedDetailProduct']);
+    const [isCatalogData, setCatalogData] = useState({});
+    const [isfilterAll, setFilterAll] = useState(true);
+    const [isfilterForHuman2, setFilterForHuman2] = useState(false);
+    const [isfilterForHumanKanye, setFilterForHumanKanye] = useState(false);
+    const [isFilterCategory, setFilterCategory] = useState([])
 
+    //calculate height
     let isMobile = width <= 570;
     let isMDthreshold = width <= 900;
 
@@ -70,6 +76,7 @@ function Shop() {
             window.removeEventListener("resize", handleWindowHeightSizeChange);
         };
     }, [isMobile, height]);
+    //calculate height
 
     const history = useHistory();
 
@@ -80,7 +87,7 @@ function Shop() {
         color: theme.palette.text.secondary,
     }));
 
-    const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+
 
     const catalogData = [{
         name: "SUPERTURF X ATMOS",
@@ -119,6 +126,7 @@ function Shop() {
     },
     ]
 
+
     const navToHome = () => {
         setOnHome(true);
         history.push("/");
@@ -139,6 +147,59 @@ function Shop() {
         alert("added to cart")
     }
 
+    const filterDataAll = (e) => {
+        setFilterAll(true);
+        setFilterForHuman2(false);
+        setFilterForHumanKanye(false);
+        setCatalogData(catalogData)
+    }
+
+    const filterDataForHuman2 = (e) => {
+        setFilterAll(false);
+        setFilterForHuman2(!isfilterForHuman2);
+
+    }
+
+    const filterDataForHumanKanye = (e) => {
+        setFilterAll(false);
+        setFilterForHumanKanye(!isfilterForHumanKanye);
+
+    }
+
+    useEffect(() => {
+        if (isfilterAll) {
+            setCatalogData(catalogData)
+        }
+    }, [isfilterAll])
+
+    useEffect(() => {
+        let filteredAry = [];
+        if (isfilterForHuman2 && !isFilterCategory.includes("second")) {
+            console.log("masuk")
+            setTimeout(() => {
+                setFilterCategory((oldArray) => [...oldArray, "second"]);
+            }, 1);
+
+        } else {
+            setTimeout(() => {
+                filteredAry = isFilterCategory.filter(e => e !== "second")
+                setFilterCategory(filteredAry)
+            }, 1);
+        }
+
+        if (isfilterForHumanKanye && !isFilterCategory.includes("Kanye")) {
+            setFilterCategory((oldArray) => [...oldArray, "Kanye"]);
+        } else {
+            filteredAry = isFilterCategory.filter(e => e !== 'Kanye')
+            setFilterCategory(filteredAry)
+        }
+
+    }, [isfilterForHuman2, isfilterForHumanKanye])
+
+    useEffect(() => {
+        // console.log("isFilterCategory", isFilterCategory)
+    }, [isFilterCategory])
+    console.log("isFilterCategory", isFilterCategory)
     return (
         <Grid id="mainBodyShop" container spacing={2} >
             <Grid xs={0} md={2} style={{ display: isMDthreshold ? "none" : "" }}>
@@ -150,8 +211,18 @@ function Shop() {
                             <div>
                                 Filter
                                 <FormGroup>
-                                    <FormControlLabel control={<Checkbox style={{ color: "black" }} defaultChecked />} label="All" />
-                                    <FormControlLabel control={<Checkbox style={{ color: "black", }} />} label="Forhuman2" />
+                                    <FormControlLabel control={<Checkbox style={{ color: "black" }}
+                                        checked={isfilterAll}
+                                        onChange={() => filterDataAll()}
+                                    />} label="All" />
+                                    <FormControlLabel control={<Checkbox style={{ color: "black", }}
+                                        checked={isfilterForHuman2}
+                                        onChange={() => filterDataForHuman2()}
+                                    />} label="Forhuman2" />
+                                    <FormControlLabel control={<Checkbox style={{ color: "black", }}
+                                        checked={isfilterForHumanKanye}
+                                        onChange={() => filterDataForHumanKanye()}
+                                    />} label="Forhuman X Kanye" />
                                 </FormGroup>
                             </div>
                         </StickyBox>
