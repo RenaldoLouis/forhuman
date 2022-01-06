@@ -175,8 +175,10 @@ function Shop() {
 
     useEffect(() => {
         if (isfilterAll) {
-            setCatalogData(catalogData)
-            setFilterCategory([])
+            setTimeout(() => {
+                setCatalogData(catalogData)
+                setFilterCategory([])
+            }, 1);
         }
     }, [isfilterAll])
 
@@ -197,12 +199,24 @@ function Shop() {
         }
 
         if (isfilterForHumanKanye && !isFilterCategory.includes("kanye")) {
-            setFilterCategory((oldArray) => [...oldArray, "kanye"]);
+            setTimeout(() => {
+                setFilterCategory((oldArray) => [...oldArray, "kanye"]);
+            }, 1);
         } else {
             if (isFilterCategory.includes("kanye") && !isfilterForHumanKanye && !isfilterAll) {
-                filteredAry = isFilterCategory.filter(e => e !== 'kanye')
-                setFilterCategory(filteredAry)
+                setTimeout(() => {
+                    filteredAry = isFilterCategory.filter(e => e !== 'kanye')
+                    setFilterCategory(filteredAry)
+                }, 1);
             }
+        }
+
+        if (isfilterForHuman2 === false && isfilterForHumanKanye === false) {
+            setTimeout(() => {
+                setCatalogData(catalogData)
+                setFilterCategory([])
+                setFilterAll(true);
+            }, 1);
         }
 
     }, [isfilterForHuman2, isfilterForHumanKanye])
@@ -210,15 +224,14 @@ function Shop() {
     useEffect(() => {
         if (!isEmpty(isCatalogData) && isfilterProcess) {
             let tempArray = [];
-
             isCatalogData.forEach((e) => {
                 if (isFilterCategory.indexOf(e.tag) >= 0) {
                     tempArray.push(e);
                 }
             })
-
-            console.log("tempArray", tempArray)
-            setCatalogData(tempArray);
+            if (!isEmpty(tempArray)) {
+                setCatalogData(tempArray);
+            }
             setFilterProcess(false)
         }
     }, [isFilterCategory])
