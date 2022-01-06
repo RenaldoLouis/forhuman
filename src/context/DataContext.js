@@ -56,7 +56,7 @@ export const DataContextProvider = (props) => {
             if (firstTimeToShop) {
                 setFirstTimeToShop(false)
                 setTimeout(() => {
-                    var containerHeight = document.getElementById('mainBodyShop').offsetHeight + 300
+                    var containerHeight = document.getElementById('mainBodyShop').offsetHeight + 1000
                     setShopPageHeight(containerHeight)
                 }, 1);
             }
