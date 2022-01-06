@@ -16,6 +16,7 @@ export const DataContextProvider = (props) => {
     const [cookie, setCookie] = useCookies(["token", "filter", "filterOverview"]);
     const [isLoading, setLoading] = useState(false);
     const [isHome, setOnHome] = useState(true);
+    const [firstTimeToShop, setFirstTimeToShop] = useState(true);
     const [toastPopup, setToastPopup] = useState({});
     const [isFirstTimeLoadShop, setFirstTimeLoadShop] = useState(true);
     const [shopPageHeight, setShopPageHeight] = useState()
@@ -52,10 +53,13 @@ export const DataContextProvider = (props) => {
     useEffect(() => {
         if (location.pathname === "/shop") {
             setOnHome(false)
-            setTimeout(() => {
-                var containerHeight = document.getElementById('mainBodyShop').offsetHeight + 300
-                setShopPageHeight(containerHeight)
-            }, 1);
+            if (firstTimeToShop) {
+                setFirstTimeToShop(false)
+                setTimeout(() => {
+                    var containerHeight = document.getElementById('mainBodyShop').offsetHeight + 300
+                    setShopPageHeight(containerHeight)
+                }, 1);
+            }
         }
     }, [location.pathname])
 

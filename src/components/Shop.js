@@ -86,13 +86,15 @@ function Shop() {
         name: "SUPERTURF X ATMOS",
         description: "Bright,bold and glazed",
         image: "product1.jpeg",
-        detailImage1: "product1.jpeg"
+        detailImage1: "product1.jpeg",
+        detailImage2: "product5.jpeg"
     },
     {
         name: "Ultraboost DNA City Pack",
         description: "Own your unique style in contemporary",
         image: "product2.jpeg",
-        detailImage1: "product2.jpeg"
+        detailImage1: "product2.jpeg",
+        detailImage2: "product5.jpeg"
     },
     {
         name: "SUPERNOVA",
@@ -105,13 +107,15 @@ function Shop() {
         name: "ADIDAS X MARIMEKKO",
         description: "Embrace your own evolution",
         image: "product4.jpeg",
-        detailImage1: "product4.jpeg"
+        detailImage1: "product4.jpeg",
+        detailImage2: "product5.jpeg"
     },
     {
         name: "ADIDAS X PARLEY",
         description: "A better choice for our planet",
         image: "product5.jpeg",
-        detailImage1: "product5.jpeg"
+        detailImage1: "product5.jpeg",
+        detailImage2: "product5.jpeg"
     },
     ]
 
@@ -119,13 +123,6 @@ function Shop() {
         setOnHome(true);
         history.push("/");
     };
-
-    useEffect(() => {
-        setTimeout(() => {
-            var containerHeight = document.getElementById('mainBodyShop').offsetHeight
-            setShopPageHeight(containerHeight)
-        }, 1);
-    }, [])
 
     const navToDetailProduct = (data) => {
         setSelectedDetailData(data)
