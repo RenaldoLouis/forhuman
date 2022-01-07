@@ -223,14 +223,12 @@ function Shop() {
 
     useEffect(() => {
         if (!isEmpty(isCatalogData) && isfilterProcess) {
-            console.log(isFilterCategory)
             let tempArray = [];
             catalogData.forEach((e) => {
                 if (isFilterCategory.indexOf(e.tag) >= 0) {
                     tempArray.push(e);
                 }
             })
-            console.log("tempArray", tempArray)
             if (!isEmpty(tempArray)) {
                 setCatalogData(tempArray);
             }
