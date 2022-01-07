@@ -17,6 +17,7 @@ import { DataContextProvider } from './context/DataContext';
 import Checkout from './components/Checkout';
 import DetailProduct from './components/DetailProduct';
 import { CookiesProvider } from 'react-cookie';
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
   const darkTheme = createTheme({
@@ -35,9 +36,7 @@ function App() {
 
     return (
       <div>
-        {/* <PrivateRoute path="/comego" component={ComeGo} /> */}
-
-
+        <LoadingScreen />
         <Navbar></Navbar>
         <Route exact path="/" component={Content} />
         <Route path="/shop" component={Shop} />

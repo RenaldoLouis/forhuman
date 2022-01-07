@@ -222,6 +222,7 @@ function Shop() {
     }, [isfilterForHuman2, isfilterForHumanKanye])
 
     useEffect(() => {
+        setLoading(true);
         if (!isEmpty(isCatalogData) && isfilterProcess) {
             let tempArray = [];
             catalogData.forEach((e) => {
@@ -234,6 +235,9 @@ function Shop() {
             }
             setFilterProcess(false)
         }
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
     }, [isFilterCategory])
 
     return (
