@@ -51,16 +51,20 @@ export const DataContextProvider = (props) => {
     };
 
     useEffect(() => {
-        if (location.pathname === "/shop") {
-            setOnHome(false)
-            if (firstTimeToShop) {
-                setFirstTimeToShop(false)
-                setTimeout(() => {
-                    var containerHeight = document.getElementById('mainBodyShop').offsetHeight + 300
-                    setShopPageHeight(containerHeight)
-                }, 1);
+        document.addEventListener('readystatechange', event => {
+            // When window loaded ( external resources are loaded too- `css`,`src`, etc...) 
+            if (location.pathname === "/shop") {
+                setOnHome(false)
+                if (firstTimeToShop) {
+                    setFirstTimeToShop(false)
+                    setTimeout(() => {
+                        var containerHeight = document.getElementById('mainBodyShop').offsetHeight
+                        console.log("tinggi", containerHeight)
+                        setShopPageHeight(containerHeight)
+                    }, 1);
+                }
             }
-        }
+        });
     }, [location.pathname])
 
     return (
