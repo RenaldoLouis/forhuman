@@ -61,7 +61,7 @@ export const DataContextProvider = (props) => {
                         var containerHeight = document.getElementById('mainBodyShop').offsetHeight
                         console.log("tinggi", containerHeight)
                         setShopPageHeight(containerHeight)
-                    }, 1);
+                    }, 1000);
                 }
             }
         });
