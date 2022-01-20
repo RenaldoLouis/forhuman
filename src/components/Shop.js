@@ -243,7 +243,7 @@ function Shop() {
 
     return (
         <Grid id="mainBodyShop" container spacing={2} >
-            <Grid xs={0} md={2} style={{ display: isMDthreshold ? "none" : "" }}>
+            <Grid item xs={0} md={2} style={{ display: isMDthreshold ? "none" : "", marginLeft: "-12.5px", marginTop: "-18px" }}>
                 {/* <Item> */}
                 <Container sx={{ py: 2, ml: 2 }} maxWidth="false">
                     {/* End hero unit */}
@@ -271,7 +271,7 @@ function Shop() {
                 </Container>
                 {/* </Item> */}
             </Grid>
-            <Grid xs={12} md={10}>
+            <Grid item xs={12} md={10}>
                 <Container sx={{ py: 2, ml: 1 }} maxWidth="false">
                     <Grid className="spaceBetweenContent" style={{ textAlign: "start" }} sx={{ py: 1 }}>
                         <Link

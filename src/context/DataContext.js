@@ -47,7 +47,6 @@ export const DataContextProvider = (props) => {
     useEffect(() => {
         document.addEventListener('readystatechange', event => {
             if (location.pathname === "/shop") {
-                console.log("masuk")
                 setTimeout(() => {
                     setOnHome(false)
                 }, 1);
