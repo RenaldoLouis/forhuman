@@ -239,7 +239,19 @@ function Shop() {
         setTimeout(() => {
             setLoading(false);
         }, 1000);
+
+
     }, [isFilterCategory])
+
+
+    useEffect(() => {
+        setShopPageHeight(0)
+        var containerHeight = document.getElementById('mainBodyShop').offsetHeight
+        console.log("height", containerHeight)
+        setTimeout(() => {
+            setShopPageHeight(containerHeight)
+        }, 1000);
+    }, [isFilterCategory, isfilterProcess])
 
     return (
         <Grid id="mainBodyShop" container spacing={2} >

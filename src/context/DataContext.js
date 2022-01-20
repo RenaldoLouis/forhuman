@@ -22,6 +22,7 @@ export const DataContextProvider = (props) => {
     const [isFirstTimeLoadShop, setFirstTimeLoadShop] = useState(true);
     const [shopPageHeight, setShopPageHeight] = useState()
     const [selectedDetailData, setSelectedDetailData] = useState({})
+    const [listProductData, setListProductData] = useState({})
 
     const toastify = (type, text) => {
         if (type === "success") {
@@ -52,10 +53,10 @@ export const DataContextProvider = (props) => {
                 }, 1);
                 if (firstTimeToShop) {
                     setFirstTimeToShop(false)
-                    setTimeout(() => {
-                        var containerHeight = document.getElementById('mainBodyShop').offsetHeight
-                        setShopPageHeight(containerHeight)
-                    }, 1000);
+                    // setTimeout(() => {
+                    //     var containerHeight = document.getElementById('mainBodyShop').offsetHeight
+                    //     setShopPageHeight(containerHeight)
+                    // }, 1000);
                 }
             }
         });
