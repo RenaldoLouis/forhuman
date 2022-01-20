@@ -8,6 +8,7 @@ import React, {
 import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import { useLocation } from 'react-router-dom';
+import GetApi from "../api/GetApi"
 
 export const DataContext = createContext({});
 
@@ -35,20 +36,14 @@ export const DataContextProvider = (props) => {
         setToastPopup(!toastPopup);
     }
 
-    const DataContextValue = {
-        isLoading,
-        setLoading,
-        toastify,
-        toastPopup,
-        setOnHome,
-        isHome,
-        setShopPageHeight,
-        shopPageHeight,
-        isFirstTimeLoadShop,
-        setFirstTimeLoadShop,
-        selectedDetailData,
-        setSelectedDetailData
-    };
+    const getProductFromApi = async () => {
+        const dataApi = await GetApi.getProductData();
+        console.log("dataapi", dataApi)
+    }
+
+    useEffect(() => {
+        getProductFromApi()
+    }, [])
 
     useEffect(() => {
         document.addEventListener('readystatechange', event => {
@@ -66,6 +61,21 @@ export const DataContextProvider = (props) => {
             }
         });
     }, [location.pathname])
+
+    const DataContextValue = {
+        isLoading,
+        setLoading,
+        toastify,
+        toastPopup,
+        setOnHome,
+        isHome,
+        setShopPageHeight,
+        shopPageHeight,
+        isFirstTimeLoadShop,
+        setFirstTimeLoadShop,
+        selectedDetailData,
+        setSelectedDetailData
+    };
 
     return (
         <DataContext.Provider value={DataContextValue}>
