@@ -62,7 +62,9 @@ function Shop() {
 
     useEffect(() => {
         if (isFirstTimeLoadShop) {
-            setFirstTimeLoadShop(false)
+            setTimeout(() => {
+                setFirstTimeLoadShop(false)
+            }, 2000);
             setTimeout(() => {
                 document.body.scrollTop = 0;
                 document.documentElement.scrollTop = 0;
@@ -246,8 +248,14 @@ function Shop() {
 
     useEffect(() => {
         setShopPageHeight(0)
-        var containerHeight = document.getElementById('mainBodyShop').offsetHeight
-        console.log("height", containerHeight)
+        var containerHeight = 0;
+        if (isFirstTimeLoadShop) {
+            setTimeout(() => {
+                containerHeight = document.getElementById('mainBodyShop').offsetHeight
+            }, 1000);
+        } else {
+            containerHeight = document.getElementById('mainBodyShop').offsetHeight
+        }
         setTimeout(() => {
             setShopPageHeight(containerHeight)
         }, 1000);
