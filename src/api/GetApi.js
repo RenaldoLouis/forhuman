@@ -2,7 +2,6 @@ import api from "./HttpInit";
 
 const baseApi = process.env.REACT_APP_BASE_API;
 
-console.log("baseApi", baseApi)
 const getProductData = async () => {
     try {
         const res = await api.get(`${baseApi}products/list`)

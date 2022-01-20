@@ -68,6 +68,7 @@ function Shop() {
                 document.documentElement.scrollTop = 0;
             }, 1);
         }
+        setOnHome(false)
     }, [])
 
     useEffect(() => {

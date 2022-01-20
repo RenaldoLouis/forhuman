@@ -38,7 +38,6 @@ export const DataContextProvider = (props) => {
 
     const getProductFromApi = async () => {
         const dataApi = await GetApi.getProductData();
-        console.log("dataapi", dataApi)
     }
 
     useEffect(() => {
@@ -47,20 +46,21 @@ export const DataContextProvider = (props) => {
 
     useEffect(() => {
         document.addEventListener('readystatechange', event => {
-            // When window loaded ( external resources are loaded too- `css`,`src`, etc...) 
             if (location.pathname === "/shop") {
-                setOnHome(false)
+                console.log("masuk")
+                setTimeout(() => {
+                    setOnHome(false)
+                }, 1);
                 if (firstTimeToShop) {
                     setFirstTimeToShop(false)
                     setTimeout(() => {
                         var containerHeight = document.getElementById('mainBodyShop').offsetHeight
-                        console.log("tinggi", containerHeight)
                         setShopPageHeight(containerHeight)
                     }, 1000);
                 }
             }
         });
-    }, [location.pathname])
+    }, [location.pathname, window.location.href])
 
     const DataContextValue = {
         isLoading,

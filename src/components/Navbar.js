@@ -77,7 +77,6 @@ function Navbar() {
     };
 
     const navToHome = () => {
-
         setOnHome(true)
         document.getElementById("navbar").classList.remove("stickyHeader")
         document.getElementById("iconNavbar").classList.remove("displayNone")
@@ -158,10 +157,12 @@ function Navbar() {
     };
 
     useEffect(() => {
-        document.getElementById("navbar").classList.remove("stickyHeader")
-        document.getElementById("iconNavbar").classList.remove("displayNone")
-        document.getElementById("buttonNavbar").classList.remove("dissapearText")
-        document.getElementById("titleNavbar").classList.remove("flexgrow0")
+        if (!isHome) {
+            document.getElementById("navbar").classList.remove("stickyHeader")
+            document.getElementById("iconNavbar").classList.remove("displayNone")
+            document.getElementById("buttonNavbar").classList.remove("dissapearText")
+            document.getElementById("titleNavbar").classList.remove("flexgrow0")
+        }
     }, [isHome])
 
     return (
