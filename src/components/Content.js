@@ -43,10 +43,6 @@ function Content() {
         setHeight(window.innerHeight);
     }
 
-    const history = useHistory();
-
-    const { isLoading, setLoading, toastify, toastPopup, setOnHome, isHome } = useContext(DataContext);
-
     useEffect(() => {
         window.addEventListener("resize", handleWindowSizeChange);
         window.addEventListener("resize", handleWindowHeightSizeChange);
@@ -55,6 +51,12 @@ function Content() {
             window.removeEventListener("resize", handleWindowHeightSizeChange);
         };
     }, [isMobile, height]);
+
+    const history = useHistory();
+
+    const { isLoading, setLoading, toastify, toastPopup, setOnHome, isHome } = useContext(DataContext);
+
+
 
     const Item = styled(Paper)(({ theme }) => ({
         ...theme.typography.body2,
