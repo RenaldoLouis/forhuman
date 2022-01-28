@@ -39,6 +39,7 @@ export const DataContextProvider = (props) => {
 
     const getProductFromApi = async () => {
         const dataApi = await GetApi.getProductData();
+        console.log("dataApi", dataApi)
     }
 
     useEffect(() => {
